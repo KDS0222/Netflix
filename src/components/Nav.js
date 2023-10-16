@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Logo from "./Logo";
 import Wrapper from "./Wrapper";
 import { BiSearch } from "@react-icons/all-files/bi/BiSearch";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
 const NavBox = styled(motion.div)`
   background: ${(props) => props.background};
@@ -65,6 +65,8 @@ const SearchBox = styled(motion.input)`
     font-size: 14px;
   }
 `;
+
+
 
 function Nav() {
   const [searchOpen, setSearchOpen] = useState(false);

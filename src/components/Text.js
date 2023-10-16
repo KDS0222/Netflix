@@ -7,6 +7,16 @@ const TextBox = styled.p`
   padding: ${(props) => props.padding};
   margin: ${(props) => props.margin};
   line-height: ${(props) => props.line};
+  color: ${(props) => props.color};
+  display: -webkit-box;
+  display: -ms-flexbox;
+  margin-top: 1px;
+  overflow: hidden;
+  vertical-align: top;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 `;
 
 function Text(props) {
@@ -17,6 +27,8 @@ function Text(props) {
       padding={props.padding}
       line={props.line}
       shadow={props.shadow}
+      color={props.color}
+      margin={props.margin}
     >
       {props.children}
     </TextBox>
