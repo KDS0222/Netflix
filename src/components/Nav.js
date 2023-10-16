@@ -1,10 +1,9 @@
-import { useScroll, motion, useTransform } from "framer-motion";
+import { useScroll, motion, useTransform, animate } from "framer-motion";
 import styled from "styled-components";
 import Logo from "./Logo";
 import Wrapper from "./Wrapper";
 import { BiSearch } from "@react-icons/all-files/bi/BiSearch";
-
-
+import { useState, useRef, useEffect } from "react";
 
 const NavBox = styled(motion.div)`
   background: ${(props) => props.background};
@@ -41,18 +40,18 @@ const NavMenuBtn = styled.li`
   }
 `;
 
-const SearchWrap = styled.div`
+const SearchWrap = styled(motion.div)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0);
   width: 250px;
   height: 40px;
   border-radius: 5px;
   padding: 5px 10px;
-` 
+`;
 
-const SearchBox = styled.input`
+const SearchBox = styled(motion.input)`
   width: 200px;
   height: 100%;
   background: none;
@@ -61,13 +60,22 @@ const SearchBox = styled.input`
   color: #e5e5e5;
   font-size: 16px;
 
-  &::placeholder{
+  &::placeholder {
     color: #e5e5e5;
     font-size: 14px;
   }
 `;
 
 function Nav() {
+  const [searchOpen, setSearchOpen] = useState(false);
+  const inputRef = useRef(null);
+
+  const searchToggleHander = () => {
+    inputRef.current.focus();
+    inputRef.current.value = "";
+    setSearchOpen(!searchOpen);
+  };
+
   const { scrollY } = useScroll();
   const bgOption = useTransform(
     scrollY,
@@ -99,9 +107,26 @@ function Nav() {
             <NavMenuBtn>시리즈</NavMenuBtn>
           </NavMenuBox>
 
-          <SearchWrap >
-            <BiSearch size="24px" style={{cursor: 'pointer'}} />
-            <SearchBox placeholder="Search for..."/>
+          <SearchWrap
+            initial={{ x: 200 }}
+            animate={{
+              x: searchOpen ? 0 : 200,
+              transition: "duration: 0.5",
+              borderColor: `rgba(255,255,255, ${searchOpen ? "0.5" : "0"})`,
+              backgroundColor: `rgba(0,0,0,${searchOpen ? "0.5" : "0"})`,
+            }}
+          >
+            <BiSearch
+              onClick={searchToggleHander}
+              size="24px"
+              style={{ cursor: "pointer" }}
+            />
+            <SearchBox
+              ref={inputRef}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: searchOpen ? 1 : 0, transition: "0.3s" }}
+              placeholder="Search for..."
+            />
           </SearchWrap>
         </Wrapper>
       </Wrapper>
