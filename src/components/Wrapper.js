@@ -8,6 +8,7 @@ const WrapperBox = styled.div`
   justify-content: ${(props) => props.justify};
   align-items: ${(props) => props.align};
   margin: ${(props) => props.margin};
+  padding: ${(props) => props.padding};
   background: ${(props) => props.background};
 
   @media (max-width: 1200px) {
@@ -25,6 +26,7 @@ const Wrapper = (props) => {
       justify={props.justify}
       align={props.align}
       margin={props.margin}
+      padding={props.padding}
       background={props.background}
     >
       {props.children}

@@ -24,7 +24,7 @@ const NavMenuBtn = styled.li`
   color: rgb(229, 229, 229);
   font-weight: 600;
   margin-right: 20px;
-  text-shadow: 2px 10px 16px #e5e5e5;
+  text-shadow: rgba(0, 0, 0, 0.6) 1px 1px 10px;
   cursor: pointer;
   position: relative;
 
