@@ -13,6 +13,7 @@ const NavBox = styled(motion.div)`
   align-items: center;
   padding: 0 50px;
   position: fixed;
+  z-index: 100;
 `;
 
 const NavMenuBox = styled.ul`
