@@ -37,7 +37,6 @@ const imgVariants = {
 
   hover: {
     scale: 1.05,
-    transition: { delay: 0.3 },
   },
 };
 

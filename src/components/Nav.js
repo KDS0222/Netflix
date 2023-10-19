@@ -83,11 +83,11 @@ function Nav() {
   const bgOption = useTransform(
     scrollY,
     [0, 100],
-    ["rgba(0,0,0,0)", "rgb(0,0,0)"]
+    ["rgba(0,0,0,0)", "rgb(0,0,0)"],
   );
 
   return (
-    <NavBox width="100%" heigth="60px" style={{ background: bgOption }}>
+    <NavBox width="100%" heigth="60px" style={{ background: bgOption, transition: 'all 0.5s'}}>
       <Wrapper
         display="flex"
         justify="space-between"
