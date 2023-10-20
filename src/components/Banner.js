@@ -7,10 +7,10 @@ const BannerWrap = styled.div`
   width: 100%;
   height: 80vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0)),
-    url(${(props) => props.backImg});
+    url(${(props) => props.img});
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center;
+  background-position: center top;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,24 +35,25 @@ const DetailBtn = styled.button`
 `;
 
 function Banner(props) {
+  function rand(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
+
   const imgLink = `https://image.tmdb.org/t/p/original/`;
+
+  const randomKey = rand(1, Object.keys(props.movieData).length);
   return (
     <>
       {props.movieData && (
-        <BannerWrap backImg={imgLink + props.movieData[0].poster_path}>
+        <BannerWrap img={imgLink + props.movieData[randomKey].backdrop_path}>
           <InfoDescBox>
             <Text size="60px" weight="bold">
-              메가로돈 2
+              {props.movieData[randomKey].title}
             </Text>
-            <Text size="28px" weight="bold" padding="15px 0">
-              오늘의 인기 영화 11위
-            </Text>
+           
             <MovieDesc>
               <Text size="18px" weight="bold" line="26px">
-                전 세계에서 가장 깊은 마리아나 해구, 역사상 가장 거대하고
-                무자비한 포식자가 도사리는 그곳에서 강철 다이버 ‘조나스’(제이슨
-                스타뎀)가 더 맹렬하게 돌아온 ‘메가로돈’과 짜릿한 대결을 펼치는
-                액션 어드벤처
+                {props.movieData[randomKey].overview}
               </Text>
             </MovieDesc>
 

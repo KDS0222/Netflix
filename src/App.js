@@ -1,3 +1,4 @@
+import "./App.css";
 import Nav from "./components/Nav";
 import Main from "./components/Main";
 import { Route, Routes } from "react-router-dom";
@@ -12,7 +13,11 @@ function App() {
     error: nowError,
     data: nowPlaying,
   } = useQuery("movieNowPlaying", () =>
-    getMovies(movieApi.nowPlaying).then((res) => res.data.results)
+    getMovies(movieApi.nowPlaying).then((res) => res.data.results),
+    {
+      staleTime: Infinity,
+      refetchOnWindowFocus: false,
+    }
   );
 
   const {
@@ -20,7 +25,11 @@ function App() {
     error: popularError,
     data: popular,
   } = useQuery("moviePopular", () =>
-    getMovies(movieApi.popular).then((res) => res.data.results)
+    getMovies(movieApi.popular).then((res) => res.data.results),
+    {
+      staleTime: Infinity,
+      refetchOnWindowFocus: false,
+    }
   );
 
   const {
@@ -28,7 +37,11 @@ function App() {
     error: topRatedError,
     data: topRated,
   } = useQuery("movieTopRated", () =>
-    getMovies(movieApi.topRated).then((res) => res.data.results)
+    getMovies(movieApi.topRated).then((res) => res.data.results),
+    {
+      staleTime: Infinity,
+      refetchOnWindowFocus: false,
+    }
   );
 
   const {
@@ -36,7 +49,11 @@ function App() {
     error: upcomingError,
     data: upcoming,
   } = useQuery("movieUpcoming", () =>
-    getMovies(movieApi.upcoming).then((res) => res.data.results)
+    getMovies(movieApi.upcoming).then((res) => res.data.results),
+    {
+      staleTime: Infinity,
+      refetchOnWindowFocus: false,
+    }
   );
 
   const movieData = {
@@ -50,7 +67,7 @@ function App() {
     <div className="App" style={{ position: "relative" }}>
       <Nav />
 
-      {nowLoading && <Loading />}
+      {nowLoading && popularLoading && topRatedLoading && upcomingLoading  && <Loading />}
       {nowPlaying && <Main movieData={movieData} />}
 
       <Routes>

@@ -8,15 +8,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 
+import 'swiper/css/navigation';
+
 // import required modules
-import { FreeMode, Pagination } from "swiper/modules";
+import { Navigation, FreeMode, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
 
 import { v4 as uuidv4 } from "uuid";
 
 const SwiperSlideBox = styled(SwiperSlide)`
-  width: 200px;
-  height: auto;
+  width: auto;
+  height: 250px;
   object-fit: cover;
   object-position: 50% 50%;
 `;
@@ -44,6 +46,7 @@ const imgVariants = {
 };
 
 function Slider(props) {
+  console.log(props.movieData);
   const imgLink = `https://image.tmdb.org/t/p/w400`;
   return (
     <SlideBox>
@@ -57,7 +60,8 @@ function Slider(props) {
         pagination={{
           clickable: true,
         }}
-        modules={[FreeMode, Pagination]}
+        modules={[FreeMode, Pagination, Navigation]}
+        navigation={true}
         className="mySwiper"
       >
         {props.movieData?.map((v) => (
@@ -68,7 +72,7 @@ function Slider(props) {
                 whileHover="hover"
                 transition={{ type: "tween" }}
                 variants={imgVariants}
-                src={imgLink + v?.poster_path}
+                src={imgLink + v?.backdrop_path}
               />
             </SwiperSlideBox>
           </>
