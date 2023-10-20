@@ -4,37 +4,54 @@ import { Route, Routes } from "react-router-dom";
 import Modal from "./components/Modal/Modal";
 import { useQuery } from "react-query";
 import { getMovies, movieApi } from "./api/api";
+import { Loading } from "./components/Loading";
 
 function App() {
-  const { isLoading, error, data } = useQuery(
-    "movieData",
-    async () =>
-      await getMovies(movieApi.newPlaying).then(
-        (res) => {
-          return res.data.results;
-        },
-        {
-          cacheTime: 60000, // 1분 동안 캐시로 저장
-          staleTime: 10000, // 10초 이내에는 캐시된 결과를 사용
-        }
-      )
-    // getMovies(movieApi.popular).then((res) => res.data.results.slice(10)),
-    // getMovies(movieApi.topRated).then((res) => res.data.results.slice(10)),
-    // getMovies(movieApi.upcoming).then((res) => res.data.results.slice(10)),
+  const {
+    isLoding: nowLoading,
+    error: nowError,
+    data: nowPlaying,
+  } = useQuery("movieNowPlaying", () =>
+    getMovies(movieApi.nowPlaying).then((res) => res.data.results)
   );
 
-  const movieData = data;
+  const {
+    isLoding: popularLoading,
+    error: popularError,
+    data: popular,
+  } = useQuery("moviePopular", () =>
+    getMovies(movieApi.popular).then((res) => res.data.results)
+  );
 
-  console.log(movieData);
+  const {
+    isLoding: topRatedLoading,
+    error: topRatedError,
+    data: topRated,
+  } = useQuery("movieTopRated", () =>
+    getMovies(movieApi.topRated).then((res) => res.data.results)
+  );
 
-  if (isLoading) return "Loading...";
+  const {
+    isLoding: upcomingLoading,
+    error: upcomingError,
+    data: upcoming,
+  } = useQuery("movieUpcoming", () =>
+    getMovies(movieApi.upcoming).then((res) => res.data.results)
+  );
 
-  if (error) return "An error has occurred: " + error.message;
+  const movieData = {
+    nowPlaying: nowPlaying,
+    popular: popular,
+    topRated: topRated,
+    upcoming: upcoming,
+  };
 
   return (
     <div className="App" style={{ position: "relative" }}>
       <Nav />
-      <Main movieData={movieData} />
+
+      {nowLoading && <Loading />}
+      {nowPlaying && <Main movieData={movieData} />}
 
       <Routes>
         <Route path="/Modal" element={<Modal />}></Route>

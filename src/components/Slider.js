@@ -12,8 +12,9 @@ import "swiper/css/free-mode";
 import { FreeMode, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
 
+import { v4 as uuidv4 } from "uuid";
+
 const SwiperSlideBox = styled(SwiperSlide)`
-  background: #fff;
   width: 200px;
   height: auto;
   object-fit: cover;
@@ -29,7 +30,6 @@ const SlideBox = styled.div`
 const SlideCard = styled(motion.img)`
   width: 100%;
   height: 100%;
-  background: url(${(props) => props.img});
   background-size: cover;
 `;
 
@@ -44,8 +44,7 @@ const imgVariants = {
 };
 
 function Slider(props) {
-  const imgLink = `https://image.tmdb.org/t/p/w500`;
-  console.log(imgLink);
+  const imgLink = `https://image.tmdb.org/t/p/w400`;
   return (
     <SlideBox>
       <Text margin="0 0 20px 20px" size="32px" weight="bold">
@@ -61,16 +60,18 @@ function Slider(props) {
         modules={[FreeMode, Pagination]}
         className="mySwiper"
       >
-        {Object.keys(props.movieData).map((key) => (
-          <SwiperSlideBox>
-            <SlideCard
-              initial="normal"
-              whileHover="hover"
-              transition={{ type: "tween" }}
-              variants={imgVariants}
-              src={imgLink + props.movieData[key].poster_path}
-            ></SlideCard>
-          </SwiperSlideBox>
+        {props.movieData?.map((v) => (
+          <>
+            <SwiperSlideBox key={uuidv4()}>
+              <SlideCard
+                initial="normal"
+                whileHover="hover"
+                transition={{ type: "tween" }}
+                variants={imgVariants}
+                src={imgLink + v?.poster_path}
+              />
+            </SwiperSlideBox>
+          </>
         ))}
       </Swiper>
     </SlideBox>

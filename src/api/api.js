@@ -3,7 +3,7 @@ import axios from "axios";
 const API_KEY = "api_key=1efe7e9dcfe999d6d25a99f91164d434";
 
 export const movieApi = {
-  newPlaying: `https://api.themoviedb.org/3/movie/now_playing?${API_KEY}&language=ko-kr&page=1`,
+  nowPlaying: `https://api.themoviedb.org/3/movie/now_playing?${API_KEY}&language=ko-kr&page=1`,
   popular: `https://api.themoviedb.org/3/movie/popular?${API_KEY}&language=ko-kr&page=1`,
   topRated: `https://api.themoviedb.org/3/movie/top_rated?${API_KEY}&language=ko-kr&page=1`,
   upcoming: `https://api.themoviedb.org/3/movie/upcoming?${API_KEY}&language=ko-kr&page=1`,
