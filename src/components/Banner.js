@@ -41,19 +41,54 @@ function Banner(props) {
 
   const imgLink = `https://image.tmdb.org/t/p/original/`;
 
-  const randomKey = rand(1, Object.keys(props.movieData).length);
+  console.log(props);
+
+  // if(props?.movieData){
+  //   randomKey = rand(1, Object.keys(props.movieData).length);
+  // }else{
+  //   randomKey = rand(1, Object.keys(props.tvData).length)
+  // }
   return (
     <>
       {props.movieData && (
-        <BannerWrap img={imgLink + props.movieData[randomKey].backdrop_path}>
+        <BannerWrap img={imgLink + props.movieData[0].backdrop_path}>
           <InfoDescBox>
             <Text size="60px" weight="bold">
-              {props.movieData[randomKey].title}
+              {props.movieData[0].title}
             </Text>
-           
+
             <MovieDesc>
               <Text size="18px" weight="bold" line="26px">
-                {props.movieData[randomKey].overview}
+                {props.movieData[0].overview}
+              </Text>
+            </MovieDesc>
+
+            <DetailBtn>
+              <FaInfoCircle size="24px" fill="#ffffff" />
+              <Text
+                shadow="none"
+                size="20px"
+                weight="bold"
+                color="#ffffff"
+                margin="0 0 0 10px"
+              >
+                상세 정보
+              </Text>
+            </DetailBtn>
+          </InfoDescBox>
+        </BannerWrap>
+      )}
+
+      {props.tvData && (
+        <BannerWrap img={imgLink + props.tvData[0].backdrop_path}>
+          <InfoDescBox>
+            <Text size="60px" weight="bold">
+              {props.tvData[0].name}
+            </Text>
+
+            <MovieDesc>
+              <Text size="18px" weight="bold" line="26px">
+                {props.tvData[0].overview}
               </Text>
             </MovieDesc>
 

@@ -4,7 +4,6 @@ import Wrapper from "./Wrapper";
 import Slider from "./Slider";
 
 function Main(props) {
-
   return (
     <Wrapper>
       <Banner movieData={props.movieData.popular} />

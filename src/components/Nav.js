@@ -4,6 +4,7 @@ import Logo from "./Logo";
 import Wrapper from "./Wrapper";
 import { BiSearch } from "@react-icons/all-files/bi/BiSearch";
 import { useState, useRef } from "react";
+import { Link, useParams } from "react-router-dom";
 
 const NavBox = styled(motion.div)`
   background: ${(props) => props.background};
@@ -67,7 +68,18 @@ const SearchBox = styled(motion.input)`
   }
 `;
 
-
+const Circle = styled(motion.span)`
+  width: 10px;
+  height: 10px;
+  display: block;
+  background-color: ${(props) => props.theme.red};
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: -15px;
+  border-radius: 10px;
+ ` 
 
 function Nav() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -83,11 +95,15 @@ function Nav() {
   const bgOption = useTransform(
     scrollY,
     [0, 100],
-    ["rgba(0,0,0,0)", "rgb(0,0,0)"],
+    ["rgba(0,0,0,0)", "rgb(0,0,0)"]
   );
 
   return (
-    <NavBox width="100%" heigth="60px" style={{ background: bgOption, transition: 'all 0.5s'}}>
+    <NavBox
+      width="100%"
+      heigth="60px"
+      style={{ background: bgOption, transition: "all 0.5s" }}
+    >
       <Wrapper
         display="flex"
         justify="space-between"
@@ -104,10 +120,11 @@ function Nav() {
         >
           <NavMenuBox>
             <NavMenuBtn>
-              홈
-              <span />
+              <Link to="/">홈</Link>
             </NavMenuBtn>
-            <NavMenuBtn>시리즈</NavMenuBtn>
+            <NavMenuBtn>
+              <Link to="/tv">시리즈</Link>
+            </NavMenuBtn>
           </NavMenuBox>
 
           <SearchWrap
