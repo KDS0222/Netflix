@@ -10,9 +10,10 @@ import "swiper/css/free-mode";
 
 // import required modules
 import { Navigation, FreeMode, Pagination } from "swiper/modules";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { v4 as uuidv4 } from "uuid";
+import { Link } from "react-router-dom";
 
 const SwiperSlideBox = styled(SwiperSlide)`
   width: auto;
@@ -97,8 +98,8 @@ function Slider(props) {
         style={{ overflow: "visible" }}
       >
         {props.movieData?.map((v) => (
-          <>
-            <SwiperSlideBox key={uuidv4()}>
+          <SwiperSlideBox key={uuidv4()}>
+            <Link to="/">
               <SlideCard
                 initial="normal"
                 whileHover="hover"
@@ -108,13 +109,13 @@ function Slider(props) {
               >
                 <SlideDesc className="video__title">{v.title}</SlideDesc>
               </SlideCard>
-            </SwiperSlideBox>
-          </>
+            </Link>
+          </SwiperSlideBox>
         ))}
 
         {props.tvData?.map((v) => (
-          <>
-            <SwiperSlideBox key={uuidv4()}>
+          <SwiperSlideBox key={uuidv4()}>
+            <Link to="/tv">
               <SlideCard
                 initial="normal"
                 whileHover="hover"
@@ -124,8 +125,8 @@ function Slider(props) {
               >
                 <SlideDesc className="video__title">{v.name}</SlideDesc>
               </SlideCard>
-            </SwiperSlideBox>
-          </>
+            </Link>
+          </SwiperSlideBox>
         ))}
       </Swiper>
     </SlideBox>

@@ -120,7 +120,7 @@ function Nav() {
         >
           <NavMenuBox>
             <NavMenuBtn>
-              <Link to="/" onClick={()=> { window.scrollTo(0, 0)}}>홈</Link>
+              <Link to="/">홈</Link>
             </NavMenuBtn>
             <NavMenuBtn>
               <Link to="/tv" >시리즈</Link>
