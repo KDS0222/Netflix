@@ -7,18 +7,20 @@ import { useQuery } from "react-query";
 import { getMovies, movieApi, tvApi } from "./api/api";
 import { Loading } from "./components/Loading";
 import { Tv } from "./components/pages/Tv";
+import { Footer } from "./components/Footer";
 
 function App() {
   const {
     isLoding: nowLoading,
     error: nowError,
     data: nowPlaying,
-  } = useQuery("movieNowPlaying", async() =>
-    getMovies(movieApi.nowPlaying).then((res) => res.data.results),
+  } = useQuery(
+    "movieNowPlaying",
+    async () => getMovies(movieApi.nowPlaying).then((res) => res.data.results),
     {
       staleTime: Infinity,
       refetchOnWindowFocus: false,
-      retry: false
+      retry: false,
     }
   );
 
@@ -26,12 +28,13 @@ function App() {
     isLoding: popularLoading,
     error: popularError,
     data: popular,
-  } = useQuery("moviePopular", async() =>
-    getMovies(movieApi.popular).then((res) => res.data.results),
+  } = useQuery(
+    "moviePopular",
+    async () => getMovies(movieApi.popular).then((res) => res.data.results),
     {
       staleTime: Infinity,
       refetchOnWindowFocus: false,
-      retry: false
+      retry: false,
     }
   );
 
@@ -39,12 +42,12 @@ function App() {
     isLoding: topRatedLoading,
     error: topRatedError,
     data: topRated,
-  } = useQuery("movieTopRated", async() =>
-    getMovies(movieApi.topRated).then((res) => res.data.results),
+  } = useQuery(
+    "movieTopRated",
+    async () => getMovies(movieApi.topRated).then((res) => res.data.results),
     {
       staleTime: Infinity,
       refetchOnWindowFocus: false,
-      
     }
   );
 
@@ -52,8 +55,9 @@ function App() {
     isLoding: upcomingLoading,
     error: upcomingError,
     data: upcoming,
-  } = useQuery("movieUpcoming", async() =>
-    getMovies(movieApi.upcoming).then((res) => res.data.results),
+  } = useQuery(
+    "movieUpcoming",
+    async () => getMovies(movieApi.upcoming).then((res) => res.data.results),
     {
       staleTime: Infinity,
       refetchOnWindowFocus: false,
@@ -66,12 +70,13 @@ function App() {
     isLoding: tvTodayLoading,
     error: tvTodayError,
     data: tvToday,
-  } = useQuery("tvAiringToday", async() =>
-    getMovies(tvApi.airingToday).then((res) => res.data.results),
+  } = useQuery(
+    "tvAiringToday",
+    async () => getMovies(tvApi.airingToday).then((res) => res.data.results),
     {
       staleTime: Infinity,
       refetchOnWindowFocus: false,
-      retry: false
+      retry: false,
     }
   );
 
@@ -79,12 +84,13 @@ function App() {
     isLoding: tvAirLoading,
     error: tvAirError,
     data: tvTheAir,
-  } = useQuery("tvOnTheAir", async() =>
-    getMovies(tvApi.onTheAir).then((res) => res.data.results),
+  } = useQuery(
+    "tvOnTheAir",
+    async () => getMovies(tvApi.onTheAir).then((res) => res.data.results),
     {
       staleTime: Infinity,
       refetchOnWindowFocus: false,
-      retry: false
+      retry: false,
     }
   );
 
@@ -92,12 +98,13 @@ function App() {
     isLoding: tvPopularLoading,
     error: tvPopularError,
     data: tvPopular,
-  } = useQuery("tvPopular", async() =>
-    getMovies(tvApi.popular).then((res) => res.data.results),
+  } = useQuery(
+    "tvPopular",
+    async () => getMovies(tvApi.popular).then((res) => res.data.results),
     {
       staleTime: Infinity,
       refetchOnWindowFocus: false,
-      retry: false
+      retry: false,
     }
   );
 
@@ -105,12 +112,13 @@ function App() {
     isLoding: tvTopRatedLoading,
     error: tvTopRatedError,
     data: tvTopRated,
-  } = useQuery("tvTopRated", async() =>
-    getMovies(tvApi.topRated).then((res) => res.data.results),
+  } = useQuery(
+    "tvTopRated",
+    async () => getMovies(tvApi.topRated).then((res) => res.data.results),
     {
       staleTime: Infinity,
       refetchOnWindowFocus: false,
-      retry: false
+      retry: false,
     }
   );
 
@@ -139,13 +147,19 @@ function App() {
     <div className="App" style={{ position: "relative" }}>
       <Nav />
 
-      {(nowLoading && popularLoading && topRatedLoading && upcomingLoading)  && <Loading />}
+      {nowLoading && popularLoading && topRatedLoading && upcomingLoading && (
+        <Loading />
+      )}
 
       <Routes>
-        <Route path="/" element={ nowPlaying && <Main movieData={movieData} />} ></Route>
-        <Route path="/tv" element={<Tv tvData={tvData} />} ></Route>
+        <Route
+          path="/"
+          element={nowPlaying && <Main movieData={movieData} />}
+        ></Route>
+        <Route path="/tv" element={<Tv tvData={tvData} />}></Route>
         <Route path="/Modal" element={<Modal />}></Route>
       </Routes>
+      <Footer />
     </div>
   );
 }
