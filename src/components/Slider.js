@@ -35,7 +35,7 @@ const SlideCard = styled(motion.div)`
   background-size: cover;
   background-image: url(${(props) => props.img});
 
-  &:hover .video__title{
+  &:hover .video__title {
     opacity: 1;
     transition-duration: 0.5s;
   }
@@ -54,7 +54,6 @@ const SlideDesc = styled(motion.div)`
   bottom: 0;
   opacity: 0;
   transition-duration: 0.5s;
-  
 `;
 
 const imgVariants = {
@@ -80,61 +79,56 @@ const descVariants = {
 function Slider(props) {
   const imgLink = `https://image.tmdb.org/t/p/w400`;
 
-  console.log(props.movieData);
   return (
-    <AnimatePresence>
-      <SlideBox>
-        <Text margin="0 0 20px 20px" size="32px" weight="bold">
-          {props.children}
-        </Text>
-        <Swiper
-          slidesPerView={5}
-          spaceBetween={15}
-          freeMode={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[FreeMode, Pagination, Navigation]}
-          navigation={true}
-          className="mySwiper"
-          style={{ overflow: "visible" }}
-        >
-          {props.movieData?.map((v) => (
-            <>
-              <SwiperSlideBox key={uuidv4()}>
-                <SlideCard
-                  initial="normal"
-                  whileHover="hover"
-                  transition={{ type: "tween" }}
-                  variants={imgVariants}
-                  img={imgLink + v?.backdrop_path}
-                >
-                  <SlideDesc className="video__title"
-                    
-                  >
-                    {v.title}
-                  </SlideDesc>
-                </SlideCard>
-              </SwiperSlideBox>
-            </>
-          ))}
+    <SlideBox>
+      <Text margin="0 0 20px 20px" size="32px" weight="bold">
+        {props.children}
+      </Text>
+      <Swiper
+        slidesPerView={5}
+        spaceBetween={15}
+        freeMode={true}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[FreeMode, Pagination, Navigation]}
+        navigation={true}
+        className="mySwiper"
+        style={{ overflow: "visible" }}
+      >
+        {props.movieData?.map((v) => (
+          <>
+            <SwiperSlideBox key={uuidv4()}>
+              <SlideCard
+                initial="normal"
+                whileHover="hover"
+                transition={{ type: "tween" }}
+                variants={imgVariants}
+                img={imgLink + v?.backdrop_path}
+              >
+                <SlideDesc className="video__title">{v.title}</SlideDesc>
+              </SlideCard>
+            </SwiperSlideBox>
+          </>
+        ))}
 
-          {props.tvData?.map((v) => (
-            <>
-              <SwiperSlideBox key={uuidv4()}>
-                <SlideCard
-                  initial="normal"
-                  whileHover="hover"
-                  transition={{ type: "tween" }}
-                  variants={imgVariants}
-                  src={imgLink + v?.backdrop_path}
-                />
-              </SwiperSlideBox>
-            </>
-          ))}
-        </Swiper>
-      </SlideBox>
-    </AnimatePresence>
+        {props.tvData?.map((v) => (
+          <>
+            <SwiperSlideBox key={uuidv4()}>
+              <SlideCard
+                initial="normal"
+                whileHover="hover"
+                transition={{ type: "tween" }}
+                variants={imgVariants}
+                img={imgLink + v?.backdrop_path}
+              >
+                <SlideDesc className="video__title">{v.name}</SlideDesc>
+              </SlideCard>
+            </SwiperSlideBox>
+          </>
+        ))}
+      </Swiper>
+    </SlideBox>
   );
 }
 
