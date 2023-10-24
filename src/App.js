@@ -8,8 +8,16 @@ import { getMovies, movieApi, tvApi } from "./api/api";
 import { Loading } from "./components/Loading";
 import { Tv } from "./components/pages/Tv";
 import { Footer } from "./components/Footer";
+import { Search } from "./components/Search";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [searchFilter, setSearchFilter] = useState("");
+
+  const searchFliterHandler = (value) => {
+    setSearchFilter(value);
+  };
+
   const {
     isLoding: nowLoading,
     error: nowError,
@@ -136,16 +144,10 @@ function App() {
     topRated: tvTopRated,
   };
 
-  // const tvData = {
-  //   nowPlaying: tvToday,
-  //   popular: tvTheAir,
-  //   topRated: tvPopular,
-  //   upcoming: tvTopRated,
-  // };
-
+  
   return (
     <div className="App" style={{ position: "relative" }}>
-      <Nav />
+      <Nav searchFliterHandler={searchFliterHandler} movieData={movieData} tvData={tvData} />
 
       {nowLoading && popularLoading && topRatedLoading && upcomingLoading && (
         <Loading />
@@ -158,6 +160,7 @@ function App() {
         ></Route>
         <Route path="/tv" element={<Tv tvData={tvData} />}></Route>
         <Route path="/Modal" element={<Modal />}></Route>
+        <Route path="/search" element={<Search />}></Route>
       </Routes>
       <Footer />
     </div>

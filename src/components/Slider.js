@@ -80,6 +80,13 @@ const descVariants = {
 function Slider(props) {
   const imgLink = `https://image.tmdb.org/t/p/w400`;
 
+  const filterKey = Object.keys(props.movieData).filter((key, i) => props.movieData[key][i] != undefined);
+
+  console.log(filterKey);
+
+
+  console.log(props.movieData);
+
   return (
     <SlideBox>
       <Text margin="0 0 20px 20px" size="32px" weight="bold">
@@ -100,6 +107,7 @@ function Slider(props) {
         {props.movieData?.map((v) => (
           <SwiperSlideBox key={uuidv4()}>
             <Link to="/">
+
               <SlideCard
                 initial="normal"
                 whileHover="hover"

@@ -4,7 +4,7 @@ import Logo from "./Logo";
 import Wrapper from "./Wrapper";
 import { BiSearch } from "@react-icons/all-files/bi/BiSearch";
 import { useState, useRef } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const NavBox = styled(motion.div)`
   background: ${(props) => props.background};
@@ -79,11 +79,18 @@ const Circle = styled(motion.span)`
   margin: 0 auto;
   bottom: -15px;
   border-radius: 10px;
- ` 
+`;
 
-function Nav() {
+function Nav(props) {
   const [searchOpen, setSearchOpen] = useState(false);
   const inputRef = useRef(null);
+  const navigation = useNavigate();
+
+  const [inputValue, setInputValue] = useState("");
+
+  const inputChangeHandler = (e) => {
+    setInputValue(e.target.value);
+  }
 
   const searchToggleHander = () => {
     inputRef.current.focus();
@@ -97,6 +104,24 @@ function Nav() {
     [0, 100],
     ["rgba(0,0,0,0)", "rgb(0,0,0)"]
   );
+
+  const searchKeywordHandler = (e) => {
+    if (e.which === 13) {
+      props.searchFliterHandler(inputValue);
+
+      navigation("/search", {
+        state: {
+          movieData: props.movieData,
+          tvData: props.tvData,
+          value: inputValue
+        },
+      });
+    }
+  };
+  
+  
+  
+    
 
   return (
     <NavBox
@@ -122,8 +147,9 @@ function Nav() {
             <NavMenuBtn>
               <Link to="/">홈</Link>
             </NavMenuBtn>
+
             <NavMenuBtn>
-              <Link to="/tv" >시리즈</Link>
+              <Link to="/tv">시리즈</Link>
             </NavMenuBtn>
           </NavMenuBox>
 
@@ -142,6 +168,8 @@ function Nav() {
               style={{ cursor: "pointer" }}
             />
             <SearchBox
+              onChange={inputChangeHandler}
+              onKeyDown={searchKeywordHandler}
               ref={inputRef}
               initial={{ opacity: 0 }}
               animate={{ opacity: searchOpen ? 1 : 0, transition: "0.3s" }}
