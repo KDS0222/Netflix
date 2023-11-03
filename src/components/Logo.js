@@ -5,6 +5,7 @@ import styled from "styled-components";
 const LogoBox = styled(motion.svg)`
   height: 35px;
   margin-right: 0px;
+  margin-top : 7px;
   fill: ${(props) => props.theme.red};
   @media (max-width: 968px) {
     height: 30px;

@@ -12,12 +12,6 @@ import { Search } from "./components/Search";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [searchFilter, setSearchFilter] = useState("");
-
-  const searchFliterHandler = (value) => {
-    setSearchFilter(value);
-  };
-
   const {
     isLoding: nowLoading,
     error: nowError,
@@ -147,7 +141,7 @@ function App() {
   
   return (
     <div className="App" style={{ position: "relative" }}>
-      <Nav searchFliterHandler={searchFliterHandler} movieData={movieData} tvData={tvData} />
+      <Nav movieData={movieData} tvData={tvData} />
 
       {nowLoading && popularLoading && topRatedLoading && upcomingLoading && (
         <Loading />

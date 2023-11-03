@@ -2,29 +2,40 @@ import styled from "styled-components";
 import { useLocation } from "react-router";
 import Wrapper from "./Wrapper";
 import Slider from "./Slider";
+import { useSearchParams } from "react-router-dom";
 
 export function Search() {
+  let [searchParams, setSearchParams] = useSearchParams();
+
   const { state } = useLocation();
   const movieData = state.movieData;
   const tvData = state.tvData;
-  const searchFilter = state.value;
 
   const movieFilterData = {};
   const tvFilterData = {};
 
-  function searchFilterFn(data, obj){
-    Object.keys(data).map((key) => {
-      obj[key] = data[key].filter(
-        (v) => v.title && v.title.toLowerCase().trim().includes(searchFilter)
-      );
-    });
-  }
+  const keyWord = searchParams.get('keyword');
+  
 
-  searchFilterFn(movieData, movieFilterData);
-  searchFilterFn(tvData, tvFilterData);
+
+  Object.keys(movieData).map((key) => {
+    if (movieData[key].filter((v) => v.title && v.title.toLowerCase().trim().includes(keyWord)).length > 0) {
+      movieFilterData[key] = movieData[key].filter((v) => v.title && v.title.toLowerCase().trim().includes(keyWord))
+    }
+  });
+
+  Object.keys(tvData).map((key) => {
+    if (tvData[key].filter((v) => v.name && v.name.toLowerCase().trim().includes(keyWord)).length > 0) {
+      tvFilterData[key] = tvData[key].filter((v) => v.name && v.name.toLowerCase().trim().includes(keyWord))
+    }
+  });
 
 
   console.log(movieFilterData);
+  console.log(tvFilterData);
+
+
+
 
   const filterKey = Object.keys(movieFilterData).filter((key, i) => movieFilterData[key][i] != null);
 
@@ -49,7 +60,10 @@ export function Search() {
         justify="center"
         align="center"
       >
-        <Slider movieData={asd}>결과</Slider> 
+        {
+          
+        }
+        <Slider movieData={asd[0]}>결과</Slider> 
 
       </Wrapper>
     </>

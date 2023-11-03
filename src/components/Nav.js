@@ -1,15 +1,15 @@
-import { useScroll, motion, useTransform, animate } from "framer-motion";
+import { useScroll, motion, useTransform } from "framer-motion";
 import styled from "styled-components";
 import Logo from "./Logo";
 import Wrapper from "./Wrapper";
 import { BiSearch } from "@react-icons/all-files/bi/BiSearch";
 import { useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 const NavBox = styled(motion.div)`
   background: ${(props) => props.background};
   width: 100%;
-  height: 60px;
+  height: 70px;
   display: flex;
   align-items: center;
   padding: 0 50px;
@@ -88,6 +88,7 @@ function Nav(props) {
 
   const [inputValue, setInputValue] = useState("");
 
+
   const inputChangeHandler = (e) => {
     setInputValue(e.target.value);
   }
@@ -107,13 +108,11 @@ function Nav(props) {
 
   const searchKeywordHandler = (e) => {
     if (e.which === 13) {
-      props.searchFliterHandler(inputValue);
 
-      navigation("/search", {
+      navigation(`/search?keyword=${inputValue}`, {
         state: {
           movieData: props.movieData,
           tvData: props.tvData,
-          value: inputValue
         },
       });
     }
@@ -121,7 +120,7 @@ function Nav(props) {
   
   
   
-    
+  
 
   return (
     <NavBox
