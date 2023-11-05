@@ -14,6 +14,7 @@ import { motion } from "framer-motion";
 
 import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
+import SliderCard from "./SliderCard";
 
 const SwiperSlideBox = styled(SwiperSlide)`
   width: auto;
@@ -100,16 +101,7 @@ function Slider(props) {
         {props.movieData?.map((v) => (
           <SwiperSlideBox key={uuidv4()}>
             <Link to="/">
-
-              <SlideCard
-                initial="normal"
-                whileHover="hover"
-                transition={{ type: "tween" }}
-                variants={imgVariants}
-                img={imgLink + v?.backdrop_path}
-              >
-                <SlideDesc className="video__title">{v.title}</SlideDesc>
-              </SlideCard>
+              <SliderCard v={v} />
             </Link>
           </SwiperSlideBox>
         ))}
@@ -117,15 +109,7 @@ function Slider(props) {
         {props.tvData?.map((v) => (
           <SwiperSlideBox key={uuidv4()}>
             <Link to="/tv">
-              <SlideCard
-                initial="normal"
-                whileHover="hover"
-                transition={{ type: "tween" }}
-                variants={imgVariants}
-                img={imgLink + v?.backdrop_path}
-              >
-                <SlideDesc className="video__title">{v.name}</SlideDesc>
-              </SlideCard>
+              <SliderCard v={v} />
             </Link>
           </SwiperSlideBox>
         ))}

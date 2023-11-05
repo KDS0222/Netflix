@@ -3,6 +3,7 @@ import { useLocation } from "react-router";
 import Wrapper from "./Wrapper";
 import Slider from "./Slider";
 import { useSearchParams } from "react-router-dom";
+import { SearchResult } from "./SearchResult";
 
 export function Search() {
   let [searchParams, setSearchParams] = useSearchParams();
@@ -30,16 +31,56 @@ export function Search() {
     }
   });
 
+  let movieTemp = [];
+  let tvTemp = [];
 
-  console.log(movieFilterData);
-  console.log(tvFilterData);
+  function total(){
+    
+    Object.keys(movieFilterData).map((key) => (
+      movieTemp.push(...movieFilterData[key])
+    ))
 
+    Object.keys(tvFilterData).map((key) => (
+      tvTemp.push(...tvFilterData[key])
+    ))
 
+    const movieArray = movieTemp.filter((item, i) => {
+      return (
+        movieTemp.findIndex((item2, j) => {
+          return item.id === item2.id;
+        }) === i
+      );
+    });
+    
+    const tvArray = tvTemp.filter((item, i) => {
+      return (
+        tvTemp.findIndex((item2, j) => {
+          return item.id === item2.id;
+        }) === i
+      );
+    });
 
+    movieTemp = movieArray;
+    tvTemp = tvArray;
+  }
+  
+  console.log(movieTemp);
+  console.log(tvTemp);
+  
+
+  total();
+
+  // console.log(movieFilterData);
+  // console.log(tvFilterData);
 
   const filterKey = Object.keys(movieFilterData).filter((key, i) => movieFilterData[key][i] != null);
 
-  const asd = Object.keys(filterKey).map(key => movieFilterData[filterKey[key]])
+
+
+  // ! filterKey에서 topRated, upcoming 둘다 나와야하는데 topRated만 나오니까 이 부분 수정하면 검색부분은 끝난다.
+  // ! tv쪽은 title이 아닌 name으로 변경한다.
+
+  // const asd = Object.keys(filterKey).map(key => movieFilterData[filterKey[key]])
 
 
   // const filterKey = Object.keys(movieFilterData).filter((key, i) => {
@@ -56,14 +97,13 @@ export function Search() {
   return (
     <>
       <Wrapper
-        height="100vh"
+      padding="70px 0 0 0"
+        height="100%"
         justify="center"
         align="center"
       >
-        {
-          
-        }
-        <Slider movieData={asd[0]}>결과</Slider> 
+        <SearchResult movieData={movieTemp}>영화 검색결과</SearchResult>
+        <SearchResult tvData={tvTemp} >TV 검색결과</SearchResult>
 
       </Wrapper>
     </>

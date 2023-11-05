@@ -8,6 +8,7 @@ const TextBox = styled.p`
   margin: ${(props) => props.margin};
   line-height: ${(props) => props.line};
   color: ${(props) => props.color};
+  text-align: ${props=> props.textAlign};
   display: -webkit-box;
   display: -ms-flexbox;
   margin-top: 1px;
@@ -29,6 +30,7 @@ function Text(props) {
       shadow={props.shadow}
       color={props.color}
       margin={props.margin}
+      textAlign={props.textAlign}
     >
       {props.children}
     </TextBox>
