@@ -104,7 +104,7 @@ export function Search() {
         justify="center"
         align="center"
       >
-        {movieTemp.length > 0 || tvTemp.length > 0 ? (
+        {(movieTemp.length > 0 || tvTemp.length > 0) && keyWord.length > 0 ? (
           <>
             <SearchResult movieData={movieTemp}>영화 검색결과</SearchResult>
             <SearchResult tvData={tvTemp}>TV 검색결과</SearchResult>
