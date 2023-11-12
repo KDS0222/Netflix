@@ -13,7 +13,7 @@ import { Navigation, FreeMode, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
 
 import { v4 as uuidv4 } from "uuid";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import SliderCard from "./SliderCard";
 
 const SwiperSlideBox = styled(SwiperSlide)`
@@ -79,8 +79,6 @@ const descVariants = {
 };
 
 function Slider(props) {
-  const imgLink = `https://image.tmdb.org/t/p/w400`;
-
   return (
     <SlideBox>
       <Text margin="0 0 20px 20px" size="32px" weight="bold">
@@ -100,15 +98,13 @@ function Slider(props) {
       >
         {props.movieData?.map((v) => (
           <SwiperSlideBox key={uuidv4()}>
-            <Link to="/">
-              <SliderCard v={v} />
-            </Link>
+            <SliderCard v={v} />
           </SwiperSlideBox>
         ))}
 
         {props.tvData?.map((v) => (
           <SwiperSlideBox key={uuidv4()}>
-            <Link to="/tv">
+            <Link to={"/" + v.id}>
               <SliderCard v={v} />
             </Link>
           </SwiperSlideBox>

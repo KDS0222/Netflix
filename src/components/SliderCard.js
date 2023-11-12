@@ -1,13 +1,20 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { SwiperSlide } from "swiper/react";
 import { v4 as uuidv4 } from "uuid";
+import Backdrop from "./Modal/Backdrop";
+import Overlay from "./Modal/Overlay";
+import ReactDOM from "react-dom";
+import { useQuery } from "react-query";
 
 const SlideCard = styled(motion.div)`
   width: 100%;
   height: 100%;
   background-size: cover;
   background-image: url(${(props) => props.img});
+  cursor: pointer;
 
   &:hover .video__title {
     opacity: 1;
@@ -42,6 +49,12 @@ const imgVariants = {
 
 export default function SliderCard(props) {
   const imgLink = `https://image.tmdb.org/t/p/w400`;
+  const navigation = useNavigate();
+
+  function navi(){
+    navigation("/" + props.v.id, {state: props.v})
+  }
+  
 
   return (
     <>
@@ -51,6 +64,7 @@ export default function SliderCard(props) {
         transition={{ type: "tween" }}
         variants={imgVariants}
         img={imgLink + props.v?.backdrop_path}
+        // onClick={navi}
       >
         <SlideDesc className="video__title">
           {props.v.title || props.v.name}

@@ -2,16 +2,17 @@ import "./App.css";
 import Nav from "./components/Nav";
 import Main from "./components/Main";
 import { Route, Routes } from "react-router-dom";
-import Modal from "./components/Modal/Modal";
 import { useQuery } from "react-query";
 import { getMovies, movieApi, tvApi } from "./api/api";
 import { Loading } from "./components/Loading";
 import { Tv } from "./components/pages/Tv";
 import { Footer } from "./components/Footer";
 import { Search } from "./components/Search";
-import { useEffect, useState } from "react";
+import Details from "./components/Modal/Details";
 
 function App() {
+  // FIXME: 이거는 리팩토링 해야할 코드입니다.
+
   const {
     isLoding: nowLoading,
     error: nowError,
@@ -138,7 +139,6 @@ function App() {
     topRated: tvTopRated,
   };
 
-  
   return (
     <div className="App" style={{ position: "relative" }}>
       <Nav movieData={movieData} tvData={tvData} />
@@ -152,8 +152,8 @@ function App() {
           path="/"
           element={nowPlaying && <Main movieData={movieData} />}
         ></Route>
+        <Route path="/:id" element={<Details />}></Route>
         <Route path="/tv" element={<Tv tvData={tvData} />}></Route>
-        <Route path="/Modal" element={<Modal />}></Route>
         <Route path="/search" element={<Search />}></Route>
       </Routes>
       <Footer />
