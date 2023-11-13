@@ -152,8 +152,9 @@ function App() {
           path="/"
           element={nowPlaying && <Main movieData={movieData} />}
         ></Route>
-        <Route path="/:id" element={<Details />}></Route>
+        <Route path="/:id" element={<Main movieData={movieData} />}></Route>
         <Route path="/tv" element={<Tv tvData={tvData} />}></Route>
+        <Route path="/tv/:id" element={<Tv tvData={tvData} />}></Route>
         <Route path="/search" element={<Search />}></Route>
       </Routes>
       <Footer />

@@ -11,7 +11,7 @@ import { useQuery } from "react-query";
 
 const SlideCard = styled(motion.div)`
   width: 100%;
-  height: 100%;
+  height: 250px;
   background-size: cover;
   background-image: url(${(props) => props.img});
   cursor: pointer;
@@ -51,10 +51,13 @@ export default function SliderCard(props) {
   const imgLink = `https://image.tmdb.org/t/p/w400`;
   const navigation = useNavigate();
 
+
   function navi(){
-    navigation("/" + props.v.id, {state: props.v})
+    navigation(`${props.v.id}?motionId=${props.motionId}`, {state: props.v})
   }
-  
+
+
+
 
   return (
     <>
@@ -64,10 +67,11 @@ export default function SliderCard(props) {
         transition={{ type: "tween" }}
         variants={imgVariants}
         img={imgLink + props.v?.backdrop_path}
-        // onClick={navi}
+        onClick={navi}
       >
         <SlideDesc className="video__title">
           {props.v.title || props.v.name}
+
         </SlideDesc>
       </SlideCard>
     </>

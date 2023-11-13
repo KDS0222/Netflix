@@ -15,6 +15,7 @@ import { motion } from "framer-motion";
 import { v4 as uuidv4 } from "uuid";
 import { Link, useParams } from "react-router-dom";
 import SliderCard from "./SliderCard";
+import { createMovieMotionId, createTvMotionId } from "../utils/helper";
 
 const SwiperSlideBox = styled(SwiperSlide)`
   width: auto;
@@ -96,12 +97,45 @@ function Slider(props) {
         className="mySwiper"
         style={{ overflow: "visible" }}
       >
-        {props.movieData?.map((v) => (
-          <SwiperSlideBox key={uuidv4()}>
-            <SliderCard v={v} />
-          </SwiperSlideBox>
-        ))}
+        {props.movieData?.map((v) => {
+          const motionId = createMovieMotionId(v.id);
+          console.log("반복문");
+          console.log(motionId);
 
+          return (
+            <SwiperSlideBox key={uuidv4()}>
+              <motion.div layoutId={motionId}>
+                <SliderCard v={v} motionId={motionId} />
+              </motion.div>
+            </SwiperSlideBox>
+          );
+        })}
+
+        {props.tvData?.map((v) => {
+          const motionTvId = createTvMotionId(v.id);
+          console.log("tv반복문");
+          console.log(motionTvId);
+
+          return (
+            <SwiperSlideBox key={uuidv4()}>
+              <motion.div layoutId={motionTvId}>
+                <SliderCard v={v} motionId={motionTvId} />
+              </motion.div>
+            </SwiperSlideBox>
+          );
+        })}
+
+        {/* <div>
+          <motion.div layoutId="movie-motion-5929392">
+        <Link to={`/5929392`}>
+
+          <SliderCard />
+
+        </Link>
+        </motion.div>
+        </div> */}
+
+        {/*/ 
         {props.tvData?.map((v) => (
           <SwiperSlideBox key={uuidv4()}>
             <Link to={"/" + v.id}>
@@ -109,6 +143,8 @@ function Slider(props) {
             </Link>
           </SwiperSlideBox>
         ))}
+
+        */}
       </Swiper>
     </SlideBox>
   );
