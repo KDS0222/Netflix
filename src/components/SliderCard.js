@@ -56,9 +56,6 @@ export default function SliderCard(props) {
     navigation(`${props.v.id}?motionId=${props.motionId}`, {state: props.v})
   }
 
-
-
-
   return (
     <>
       <SlideCard
