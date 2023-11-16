@@ -10,7 +10,7 @@ const WrapperBox = styled.div`
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   background: ${(props) => props.background};
-
+  flex-direction: ${props => props.direction};
   @media (max-width: 1200px) {
     max-width: 90%;
   }
@@ -28,6 +28,7 @@ const Wrapper = (props) => {
       margin={props.margin}
       padding={props.padding}
       background={props.background}
+      direction={props.direction}
     >
       {props.children}
     </WrapperBox>

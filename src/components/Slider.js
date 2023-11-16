@@ -99,8 +99,6 @@ function Slider(props) {
       >
         {props.movieData?.map((v) => {
           const motionId = createMovieMotionId(v.id);
-          console.log("반복문");
-          console.log(motionId);
 
           return (
             <SwiperSlideBox key={uuidv4()}>
@@ -113,8 +111,6 @@ function Slider(props) {
 
         {props.tvData?.map((v) => {
           const motionTvId = createTvMotionId(v.id);
-          console.log("tv반복문");
-          console.log(motionTvId);
 
           return (
             <SwiperSlideBox key={uuidv4()}>

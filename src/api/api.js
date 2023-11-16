@@ -16,6 +16,7 @@ export const tvApi = {
   topRated: `https://api.themoviedb.org/3/tv/top_rated?language=ko-kr&page=1&${API_KEY}`,
 };
 
+
 export const getMovies = async (data) => {
   return await axios.get(data);
 };

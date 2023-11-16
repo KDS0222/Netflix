@@ -12,7 +12,8 @@ const NavBox = styled(motion.div)`
   height: 70px;
   display: flex;
   align-items: center;
-  padding: 0 50px;
+  padding-left: 50px;
+  padding-right: 15px;
   position: fixed;
   z-index: 100;
 `;

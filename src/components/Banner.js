@@ -41,7 +41,6 @@ function Banner(props) {
 
   const imgLink = `https://image.tmdb.org/t/p/original/`;
 
-  console.log(props);
 
   // if(props?.movieData){
   //   randomKey = rand(1, Object.keys(props.movieData).length);
