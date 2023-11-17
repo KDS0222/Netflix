@@ -15,6 +15,7 @@ import Wrapper from "../Wrapper";
 import { getMovies, movieApi } from "../../api/api";
 import { useQuery } from "react-query";
 import { useEffect } from "react";
+import { Loading } from "../Loading";
 
 const ModalContainer = styled(motion.div)`
   position: fixed;
@@ -91,7 +92,7 @@ function Overlay({ id }) {
   const motionId = searchParams.get("motionId");
   const imgLink = `https://image.tmdb.org/t/p/original/`;
 
-  if (isLoading) return "isLoading";
+  if (isLoading) return <Loading />;
   if (error) return "An error ";
 
   console.log("Overlay console: " + id);
