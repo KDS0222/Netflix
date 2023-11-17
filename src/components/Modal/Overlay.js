@@ -16,6 +16,9 @@ import { getMovies, movieApi } from "../../api/api";
 import { useQuery } from "react-query";
 import { useEffect } from "react";
 import { Loading } from "../Loading";
+import adult from "./../../images/adult.svg";
+import { BiCameraMovie } from "react-icons/bi";
+
 
 const ModalContainer = styled(motion.div)`
   position: fixed;
@@ -56,29 +59,21 @@ const ModalWrap = styled(motion.div)`
   height: 100%;
   background-color: rgb(47, 47, 47);
   border-radius: 6px;
+  position: relative;
+`;
+
+const Adult = styled.img`
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
 `;
 
 function Overlay({ id }) {
   const location = useLocation();
   const cardData = location.state;
 
-  // const {isLoading, error, data} = useQuery(
-  //   "movieData",
-  //   async () => {
-  //     const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=1efe7e9dcfe999d6d25a99f91164d434&language=ko-kr`);
-
-  //     if(!response.ok) {
-  //       throw new Error("Failed to fetch movie Data");
-  //     }
-
-  //     return response.json();
-  //   },
-  //   {
-  //     staleTime: Infinity,
-  //     refetchOnWindowFocus: false
-  //   }
-
-  // )
   const { isLoading, error, data } = useQuery("movieData", () =>
     fetch(
       `https://api.themoviedb.org/3/movie/${id}?api_key=1efe7e9dcfe999d6d25a99f91164d434&language=ko-kr`
@@ -98,9 +93,18 @@ function Overlay({ id }) {
   console.log("Overlay console: " + id);
   console.log("Detail Data");
 
+  function totalTime(value){
+    let totalTime = value;
+    let hour = parseInt(totalTime / 60);
+    let min = totalTime % 60;
+
+    return `${hour}시간 ${min}분`;
+  }
+
+
   return (
     <>
-      {cardData && (
+      {cardData &&  (
         <>
           <Backdrop />
           <ModalContainer
@@ -111,6 +115,7 @@ function Overlay({ id }) {
             exit={{ opacity: 0, transition: { duration: 0.3 } }}
           >
             <ModalWrap>
+              {data.adult && <Adult src={adult} />}
               <ModalBg backgroundImg={imgLink + cardData?.backdrop_path}>
                 <Text color="rgb(229, 229, 229)" size="20px" weight="500">
                   {cardData.original_name || cardData.original_title}
@@ -134,12 +139,30 @@ function Overlay({ id }) {
                   </Text>
 
                   {data.genres.map((v) => (
-                    <div style={{backgroundColor: "black", padding: "3px 5px", marginRight: "5px", borderRadius: "10px"}}>
-                      <Text color="rgb(229, 229, 229)" margin="0 3px" size="14px">
+                    <div
+                      style={{
+                        backgroundColor: "black",
+                        padding: "3px 5px",
+                        marginRight: "5px",
+                        borderRadius: "10px",
+                      }}
+                    >
+                      <Text
+                        color="rgb(229, 229, 229)"
+                        margin="0 3px"
+                        size="14px"
+                      >
                         {`#${v.name}`}
                       </Text>
                     </div>
                   ))}
+                </Wrapper>
+
+                <Wrapper display="flex" align="center" margin="10px 0">
+                  <BiCameraMovie color="green"/>
+                  <Text marginLeft="5px"
+                    color="rgb(229, 229, 229)"
+                  >{totalTime(data.runtime)}</Text>
                 </Wrapper>
               </Wrapper>
             </ModalWrap>

@@ -10,6 +10,7 @@ const TextBox = styled.p`
   color: ${(props) => props.color};
   text-align: ${props=> props.textAlign};
   margin-right: ${props=> props.marginRight};
+  margin-left: ${props=> props.marginLeft};
   display: -webkit-box;
   display: -ms-flexbox;
   margin-top: 1px;
