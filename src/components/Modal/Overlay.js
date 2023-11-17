@@ -19,6 +19,10 @@ import { Loading } from "../Loading";
 import adult from "./../../images/adult.svg";
 import { BiCameraMovie } from "react-icons/bi";
 
+const OverView = styled.span`
+  color: #ffffff;
+  line-height: 24px;
+`
 
 const ModalContainer = styled(motion.div)`
   position: fixed;
@@ -26,7 +30,7 @@ const ModalContainer = styled(motion.div)`
   left: 50%;
   transform: translate(-50%, -50%) !important;
 
-  min-width: 600px;
+  width: 600px;
   height: 750px;
   background-color: #ffffff;
   color: #000000;
@@ -60,6 +64,7 @@ const ModalWrap = styled(motion.div)`
   background-color: rgb(47, 47, 47);
   border-radius: 6px;
   position: relative;
+  overflow: auto;
 `;
 
 const Adult = styled.img`
@@ -163,6 +168,16 @@ function Overlay({ id }) {
                   <Text marginLeft="5px"
                     color="rgb(229, 229, 229)"
                   >{totalTime(data.runtime)}</Text>
+
+                  {/* 별점 */}
+                </Wrapper>
+
+                <Wrapper>
+                  <OverView color="#ffffff">{data.overview}</OverView>
+                </Wrapper>
+
+                <Wrapper display="flex" justify="center" margin="10px 0">
+                  <OverView color="#ffffff">{`제작사: ${data.production_companies[0].name}(${data.production_companies[0].origin_country})`}</OverView>
                 </Wrapper>
               </Wrapper>
             </ModalWrap>
