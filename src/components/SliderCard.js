@@ -15,6 +15,7 @@ const SlideCard = styled(motion.div)`
   background-size: cover;
   background-image: url(${(props) => props.img});
   cursor: pointer;
+  background-position: center center;
 
   &:hover .video__title {
     opacity: 1;
