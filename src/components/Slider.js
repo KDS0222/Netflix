@@ -25,8 +25,7 @@ const SwiperSlideBox = styled(SwiperSlide)`
   position: relative;
   overflow: visible;
 
-
-  @media (max-width:1200px) {
+  @media (max-width: 1200px) {
     overflow: initial;
   }
 `;
@@ -35,42 +34,26 @@ const SlideBox = styled.div`
   &:not(:last-child) {
     margin-bottom: 50px;
   }
-`;
 
-const SlideCard = styled(motion.div)`
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-image: url(${(props) => props.img});
-
-  &:hover .video__title {
-    opacity: 1;
-    transition-duration: 0.5s;
+  @media (max-width: 768px) {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
   }
 `;
 
-const SlideDesc = styled(motion.div)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  font-size: 18px;
-  font-weight: 600;
-  background-color: rgb(47, 47, 47);
-  position: absolute;
-  bottom: 0;
-  opacity: 0;
-  transition-duration: 0.5s;
+const VideoTitle = styled(Text)`
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
-
 
 function Slider(props) {
   return (
     <SlideBox>
-      <Text margin="0 0 20px 20px" size="32px" weight="bold">
+      <VideoTitle margin="0 0 20px 20px" size="32px" weight="bold">
         {props.children}
-      </Text>
+      </VideoTitle>
       <Swiper
         slidesPerView={5}
         spaceBetween={15}
@@ -81,26 +64,25 @@ function Slider(props) {
         modules={[FreeMode, Pagination, Navigation]}
         navigation={true}
         className="mySwiper"
-
-        breakpoints= {{
+        breakpoints={{
           // when window width is >= 320px
-          1200:{
+          1200: {
             slidesPerView: 5,
-            spaceBetween: 15
+            spaceBetween: 15,
           },
 
-          700:{
+          700: {
             slidesPerView: 3,
-            spaceBetween: 15
+            spaceBetween: 15,
           },
 
-          500:{
+          500: {
             slidesPerView: 2,
-            spaceBetween: 15
+            spaceBetween: 15,
           },
-          300:{
+          300: {
             slidesPerView: 1,
-            spaceBetween: 15
+            spaceBetween: 15,
           },
         }}
       >
@@ -127,27 +109,6 @@ function Slider(props) {
             </SwiperSlideBox>
           );
         })}
-
-        {/* <div>
-          <motion.div layoutId="movie-motion-5929392">
-        <Link to={`/5929392`}>
-
-          <SliderCard />
-
-        </Link>
-        </motion.div>
-        </div> */}
-
-        {/*/ 
-        {props.tvData?.map((v) => (
-          <SwiperSlideBox key={uuidv4()}>
-            <Link to={"/" + v.id}>
-              <SliderCard v={v} />
-            </Link>
-          </SwiperSlideBox>
-        ))}
-
-        */}
       </Swiper>
     </SlideBox>
   );

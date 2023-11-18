@@ -7,13 +7,24 @@ const FooterBox = styled.div`
   justify-content: center;
   align-items: center;
   height: 200px;
+
+  @media (max-width: 768px) {
+    height: initial;
+    padding-bottom: 50px;
+  }
 `;
+
+const PortfolliText = styled(Text)`
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+`
 
 export function Footer() {
   return (
     <FooterBox>
-      <Text size="24px">Portfollio</Text>
-      <Text size="18px">asstaff2020@gmail.com / Kim DongSin</Text>
+      <PortfolliText size="24px">Portfollio</PortfolliText>
+      <PortfolliText size="18px">asstaff2020@gmail.com / Kim DongSin</PortfolliText>
     </FooterBox>
   );
 }

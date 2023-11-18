@@ -15,6 +15,10 @@ const BannerWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 50px;
+
+  @media (max-width: 768px) {
+    height: 45vh;
+  }
 `;
 
 const InfoDescBox = styled.div``;
@@ -32,6 +36,39 @@ const DetailBtn = styled.button`
   background-color: rgb(47, 47, 47);
   padding: 10px 15px;
   border-radius: 5px;
+
+  @media (max-width: 768px) {
+    padding: 5px 10px;
+  }
+`;
+
+const TitleText = styled(Text)`
+  font-size: 60px;
+  font-weight: bold;
+
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
+`;
+
+const SubText = styled(Text)`
+  @media (max-width: 768px) {
+    font-size: 14px;
+    line-height: 22px;
+  }
+`;
+
+const DetailInfoText = styled(Text)`
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+`;
+
+const FaInfoCircleIcon = styled(FaInfoCircle)`
+  @media (max-width: 768px) {
+    width: 18px;
+    height: 18px;
+  }
 `;
 
 function Banner(props) {
@@ -40,7 +77,6 @@ function Banner(props) {
   }
 
   const imgLink = `https://image.tmdb.org/t/p/original/`;
-
 
   // if(props?.movieData){
   //   randomKey = rand(1, Object.keys(props.movieData).length);
@@ -52,19 +88,17 @@ function Banner(props) {
       {props.movieData && (
         <BannerWrap img={imgLink + props.movieData[0].backdrop_path}>
           <InfoDescBox>
-            <Text size="60px" weight="bold">
-              {props.movieData[0].title}
-            </Text>
+            <TitleText>{props.movieData[0].title}</TitleText>
 
             <MovieDesc>
-              <Text size="18px" weight="bold" line="26px">
+              <SubText size="18px" weight="bold" line="26px">
                 {props.movieData[0].overview}
-              </Text>
+              </SubText>
             </MovieDesc>
 
             <DetailBtn>
-              <FaInfoCircle size="24px" fill="#ffffff" />
-              <Text
+              <FaInfoCircleIcon size="24px" fill="#ffffff" />
+              <DetailInfoText
                 shadow="none"
                 size="20px"
                 weight="bold"
@@ -72,7 +106,7 @@ function Banner(props) {
                 margin="0 0 0 10px"
               >
                 상세 정보
-              </Text>
+              </DetailInfoText>
             </DetailBtn>
           </InfoDescBox>
         </BannerWrap>

@@ -28,3 +28,9 @@
 }
 
 
+@media (max-width: 1200px) {
+    .swiper{
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+    }
+}

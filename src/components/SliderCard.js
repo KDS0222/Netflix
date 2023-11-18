@@ -20,6 +20,10 @@ const SlideCard = styled(motion.div)`
     opacity: 1;
     transition-duration: 0.5s;
   }
+
+  @media (max-width: 768px) {
+    height: 210px;
+  }
 `;
 
 const SlideDesc = styled(motion.div)`
@@ -35,6 +39,10 @@ const SlideDesc = styled(motion.div)`
   bottom: 0;
   opacity: 0;
   transition-duration: 0.5s;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const imgVariants = {

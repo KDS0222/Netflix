@@ -64,6 +64,10 @@ const SearchWrap = styled(motion.div)`
   height: 40px;
   border-radius: 5px;
   padding: 5px 10px;
+
+  @media (max-width: 425px) {
+    display: none;
+  }
 `;
 
 const SearchBox = styled(motion.input)`
@@ -79,19 +83,6 @@ const SearchBox = styled(motion.input)`
     color: #e5e5e5;
     font-size: 14px;
   }
-`;
-
-const Circle = styled(motion.span)`
-  width: 10px;
-  height: 10px;
-  display: block;
-  background-color: ${(props) => props.theme.red};
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  bottom: -15px;
-  border-radius: 10px;
 `;
 
 function Nav(props) {
