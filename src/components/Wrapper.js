@@ -17,6 +17,7 @@ const WrapperBox = styled.div`
   bottom: ${props => props.bottom};
   text-align: ${props => props.textAlign};
   transform: ${props => props.transform};
+  flex: ${props => props.flex};
   @media (max-width: 1200px) {
     max-width: 100%;
   }
