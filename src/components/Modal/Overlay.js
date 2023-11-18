@@ -57,6 +57,7 @@ const ModalBg = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   padding: 20px;
+  flex:1;
 `;
 
 const ModalWrap = styled(motion.div)`
@@ -66,6 +67,8 @@ const ModalWrap = styled(motion.div)`
   border-radius: 6px;
   position: relative;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Adult = styled.img`
