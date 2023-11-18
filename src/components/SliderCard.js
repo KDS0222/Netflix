@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { SwiperSlide } from "swiper/react";
 import { v4 as uuidv4 } from "uuid";
@@ -51,9 +51,18 @@ export default function SliderCard(props) {
   const imgLink = `https://image.tmdb.org/t/p/w400`;
   const navigation = useNavigate();
 
+  const location = useLocation();
 
-  function navi(){
-    navigation(`${props.v.id}?motionId=${props.motionId}`, {state: props.v})
+  console.log(location);
+
+  function navi() {
+    location.pathname == "/"
+      ? navigation(`/${props.v.id}?motionId=${props.motionId}`, {
+          state: props.v,
+        })
+      : navigation(`/tv/${props.v.id}?motionId=${props.motionId}`, {
+          state: props.v,
+        });
   }
 
   return (
@@ -68,7 +77,6 @@ export default function SliderCard(props) {
       >
         <SlideDesc className="video__title">
           {props.v.title || props.v.name}
-
         </SlideDesc>
       </SlideCard>
     </>

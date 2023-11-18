@@ -3,6 +3,7 @@ import Text from "./Text";
 import SliderCard from "./SliderCard";
 import { Link } from "react-router-dom";
 import Wrapper from "./Wrapper";
+import { motion } from "framer-motion";
 
 const CardWrap = styled.div`
   width: 100%;
@@ -32,9 +33,9 @@ export function SearchResult(props) {
       <CardWrap>
         {(props.movieData || props.tvData)?.map((v) => (
           <CardBox>
-            <Link to="/">
-              <SliderCard v={v} />
-            </Link>
+            <motion.div>
+              <SliderCard v={v}/>
+            </motion.div>
           </CardBox>
         ))}
       </CardWrap>

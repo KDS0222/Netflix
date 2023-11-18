@@ -96,9 +96,13 @@ function Overlay({ id }) {
   const location = useLocation();
   const cardData = location.state;
 
+  console.log(location);
+
   const { isLoading, error, data } = useQuery("movieData", () =>
     fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=1efe7e9dcfe999d6d25a99f91164d434&language=ko-kr`
+      location.pathname.includes("/tv")
+        ? `https://api.themoviedb.org/3/tv/${id}?api_key=1efe7e9dcfe999d6d25a99f91164d434&language=ko-kr`
+        : `https://api.themoviedb.org/3/movie/${id}?api_key=1efe7e9dcfe999d6d25a99f91164d434&language=ko-kr`
     ).then((res) => res.json())
   );
 
@@ -120,7 +124,11 @@ function Overlay({ id }) {
     let hour = parseInt(totalTime / 60);
     let min = totalTime % 60;
 
-    return `${hour}시간 ${min}분`;
+    if (hour == 0 && min == 0) {
+      return `정보없음`;
+    } else {
+      return `${hour}시간 ${min}분`;
+    }
   }
 
   return (
@@ -139,10 +147,10 @@ function Overlay({ id }) {
               {data.adult && <Adult src={adult} />}
               <ModalBg backgroundImg={imgLink + cardData?.backdrop_path}>
                 <Text color="rgb(229, 229, 229)" size="20px" weight="500">
-                  {cardData.original_name || cardData.original_title}
+                  {cardData?.original_name || cardData.original_title}
                 </Text>
                 <Text color="rgb(229, 229, 229)" size="40px" weight="bold">
-                  {cardData.name || cardData.title}
+                  {cardData?.name || cardData.title}
                 </Text>
               </ModalBg>
 
@@ -173,7 +181,7 @@ function Overlay({ id }) {
                         margin="0 3px"
                         size="14px"
                       >
-                        {`#${v.name}`}
+                        {`#${v?.name}`}
                       </Text>
                     </div>
                   ))}
@@ -188,7 +196,9 @@ function Overlay({ id }) {
                   <Wrapper display="flex" align="center">
                     <BiCameraMovie color="green" />
                     <Text marginLeft="5px" color="rgb(229, 229, 229)">
-                      {totalTime(data.runtime)}
+                      {totalTime(
+                        data.runtime || data.last_episode_to_air.runtime
+                      )}
                     </Text>
                   </Wrapper>
 
@@ -197,10 +207,12 @@ function Overlay({ id }) {
                       별점:
                     </Text>
 
-                    <Text weight="bold" color="#ffffff" marginRight="10px">
+                        {data.vote_average > 0? <Text weight="bold" color="#ffffff" marginRight="10px">
                       {(data.vote_average / 2).toFixed(1)}
-                    </Text>
+                    </Text>: <Text color="#ffffff" marginRight="10px">정보 없음</Text>}
+                    
 
+                    
                     <AverageBox>
                       <AverageStar
                         style={{ width: data.vote_average * 10 + "%" }}
@@ -209,13 +221,21 @@ function Overlay({ id }) {
                   </Wrapper>
                 </Wrapper>
 
-                <Wrapper margin="20px 0">
-                  <OverView color="#ffffff">{data.overview}</OverView>
-                </Wrapper>
+                {data.overview != "" ? (
+                  <Wrapper margin="20px 0">
+                    <OverView color="#ffffff">{data.overview}</OverView>
+                  </Wrapper>
+                ) : (
+                  <Text margin="20px 0" textAlign="center" color="#ffffff">소개정보 없음</Text>
+                )}
 
-                <Wrapper display="flex" justify="center">
-                  <OverView color="#ffffff">{`제작사: ${data.production_companies[0].name}(${data.production_companies[0].origin_country})`}</OverView>
-                </Wrapper>
+                {data.production_companies != "" ? (
+                  <Wrapper display="flex" justify="center">
+                    <OverView color="#ffffff">{`제작사: ${data.production_companies[0].name}(${data.production_companies[0].origin_country})`}</OverView>
+                  </Wrapper>
+                ) : (
+                  <Text color="#ffffff" textAlign="center">제작사: 정보 없음</Text>
+                )}
               </Wrapper>
             </ModalWrap>
           </ModalContainer>
