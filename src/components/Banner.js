@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Text from "./Text";
 import { FaInfoCircle } from "@react-icons/all-files/fa/FaInfoCircle";
+import { Link, useNavigate } from "react-router-dom";
 
 const BannerWrap = styled.div`
   padding-top: 60px;
@@ -72,17 +73,9 @@ const FaInfoCircleIcon = styled(FaInfoCircle)`
 `;
 
 function Banner(props) {
-  function rand(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-
   const imgLink = `https://image.tmdb.org/t/p/original/`;
+  const navigation = useNavigate();
 
-  // if(props?.movieData){
-  //   randomKey = rand(1, Object.keys(props.movieData).length);
-  // }else{
-  //   randomKey = rand(1, Object.keys(props.tvData).length)
-  // }
   return (
     <>
       {props.movieData && (
@@ -96,7 +89,14 @@ function Banner(props) {
               </SubText>
             </MovieDesc>
 
-            <DetailBtn>
+            <DetailBtn
+              onClick={() => navigation(
+                `/${props.movieData[0].id}`,
+                {
+                  state: props.movieData[0],
+                }
+              )}
+            >
               <FaInfoCircleIcon size="24px" fill="#ffffff" />
               <DetailInfoText
                 shadow="none"
@@ -125,7 +125,12 @@ function Banner(props) {
               </Text>
             </MovieDesc>
 
-            <DetailBtn>
+            <DetailBtn onClick={() => navigation(
+                `/tv/${props.tvData[0].id}`,
+                {
+                  state: props.tvData[0],
+                }
+              )}>
               <FaInfoCircle size="24px" fill="#ffffff" />
               <Text
                 shadow="none"
