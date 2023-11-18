@@ -56,13 +56,13 @@ export default function SliderCard(props) {
   console.log(location);
 
   function navi() {
-    location.pathname == "/"
-      ? navigation(`/${props.v.id}?motionId=${props.motionId}`, {
-          state: props.v,
-        })
-      : navigation(`/tv/${props.v.id}?motionId=${props.motionId}`, {
-          state: props.v,
-        });
+    location.pathname == "/tv"
+      ? navigation(`/tv/${props.v.id}?motionId=${props.motionId}`, {
+        state: props.v,
+      })
+      : navigation(`/${props.v.id}?motionId=${props.motionId}`, {
+        state: props.v,
+      });
   }
 
   return (
