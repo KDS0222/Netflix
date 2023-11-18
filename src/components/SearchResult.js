@@ -21,6 +21,11 @@ const CardBox = styled.div`
   object-position: 50% 50%;
   position: relative;
   overflow: visible;
+
+  @media (max-width:1200px) {
+    overflow: initial;
+    
+  }
 `;
 
 export function SearchResult(props) {

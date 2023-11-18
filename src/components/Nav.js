@@ -16,11 +16,19 @@ const NavBox = styled(motion.div)`
   padding-right: 15px;
   position: fixed;
   z-index: 100;
+
+  @media (max-width: 768px) {
+    padding-left: 20px;
+  }
 `;
 
 const NavMenuBox = styled.ul`
   margin-left: 50px;
   display: flex;
+
+  @media (max-width: 768px) {
+    margin-left: 10px;
+  }
 `;
 
 const NavMenuBtn = styled.li`
@@ -40,6 +48,10 @@ const NavMenuBtn = styled.li`
     height: 5px;
     background: red;
     border-radius: 100%;
+  }
+
+  @media (max-width: 768px) {
+    margin-right: 10px;
   }
 `;
 

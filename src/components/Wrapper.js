@@ -11,24 +11,21 @@ const WrapperBox = styled.div`
   padding: ${(props) => props.padding};
   background: ${(props) => props.background};
   flex-direction: ${props => props.direction};
+  margin-bottom: ${props => props.marginBottom};
+  position: ${props => props.position};
+  left: ${props => props.left};
+  bottom: ${props => props.bottom};
+  text-align: ${props => props.textAlign};
+  transform: ${props => props.transform};
   @media (max-width: 1200px) {
-    max-width: 90%;
+    max-width: 100%;
   }
 `;
 
 const Wrapper = (props) => {
   return (
     <WrapperBox
-      maxWidth={props.maxWidth}
-      width={props.width}
-      height={props.height}
-      display={props.display}
-      justify={props.justify}
-      align={props.align}
-      margin={props.margin}
-      padding={props.padding}
-      background={props.background}
-      direction={props.direction}
+      {...props}
     >
       {props.children}
     </WrapperBox>

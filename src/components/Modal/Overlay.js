@@ -22,6 +22,7 @@ import { BiCameraMovie } from "react-icons/bi";
 const OverView = styled.span`
   color: #ffffff;
   line-height: 24px;
+  font-size: 13px;
 `;
 
 const ModalContainer = styled(motion.div)`
@@ -136,109 +137,141 @@ function Overlay({ id }) {
       {cardData && (
         <>
           <Backdrop />
-          <ModalContainer
-            layoutId={motionId}
-            key="modal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, transition: { duration: 0.3 } }}
-          >
-            <ModalWrap>
-              {data.adult && <Adult src={adult} />}
-              <ModalBg backgroundImg={imgLink + cardData?.backdrop_path}>
-                <Text color="rgb(229, 229, 229)" size="20px" weight="500">
-                  {cardData?.original_name || cardData.original_title}
-                </Text>
-                <Text color="rgb(229, 229, 229)" size="40px" weight="bold">
-                  {cardData?.name || cardData.title}
-                </Text>
-              </ModalBg>
-
-              <Wrapper padding="20px">
-                <Wrapper display="flex" align="center">
-                  <Text
-                    color="rgb(229, 229, 229)"
-                    size="24px"
-                    weight="500"
-                    shadow=" "
-                    marginRight="12px"
-                  >
-                    {cardData.release_date?.slice(0, 4) ||
-                      cardData.first_air_date?.slice(0, 4)}
+          <Wrapper weight="100%" height="100%">
+            <ModalContainer
+              layoutId={motionId}
+              key="modal"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, transition: { duration: 0.3 } }}
+            >
+              <ModalWrap>
+                {data.adult && <Adult src={adult} />}
+                <ModalBg backgroundImg={imgLink + cardData?.backdrop_path}>
+                  <Text color="rgb(229, 229, 229)" size="20px" weight="500">
+                    {cardData?.original_name || cardData.original_title}
                   </Text>
+                  <Text color="rgb(229, 229, 229)" size="40px" weight="bold">
+                    {cardData?.name || cardData.title}
+                  </Text>
+                </ModalBg>
 
-                  {data.genres.map((v) => (
-                    <div
-                      style={{
-                        backgroundColor: "black",
-                        padding: "3px 5px",
-                        marginRight: "5px",
-                        borderRadius: "10px",
-                      }}
+                <Wrapper>
+                  <Wrapper
+                    display="flex"
+                    align="center"
+                    marginBottom="20px"
+                    padding="20px 20px 0px 20px"
+                  >
+                    <Text
+                      color="rgb(229, 229, 229)"
+                      size="24px"
+                      weight="500"
+                      shadow=" "
+                      marginRight="12px"
                     >
-                      <Text
-                        color="rgb(229, 229, 229)"
-                        margin="0 3px"
-                        size="14px"
+                      {cardData.release_date?.slice(0, 4) ||
+                        cardData.first_air_date?.slice(0, 4)}
+                    </Text>
+
+                    {data.genres.map((v) => (
+                      <div
+                        style={{
+                          backgroundColor: "black",
+                          padding: "3px 5px",
+                          marginRight: "5px",
+                          borderRadius: "10px",
+                        }}
                       >
-                        {`#${v?.name}`}
+                        <Text
+                          color="rgb(229, 229, 229)"
+                          margin="0 3px"
+                          size="14px"
+                        >
+                          {`#${v?.name}`}
+                        </Text>
+                      </div>
+                    ))}
+                  </Wrapper>
+
+                  <Wrapper
+                    display="flex"
+                    justify="space-between"
+                    align="center"
+                    margin="10px 0"
+                    marginBottom="25px"
+                    padding="6px 20px 0px 20px"
+                  >
+                    <Wrapper display="flex" align="center">
+                      <BiCameraMovie color="green" />
+                      <Text marginLeft="5px" color="rgb(229, 229, 229)">
+                        {totalTime(
+                          data.runtime || data.last_episode_to_air.runtime
+                        )}
                       </Text>
-                    </div>
-                  ))}
-                </Wrapper>
+                    </Wrapper>
 
-                <Wrapper
-                  display="flex"
-                  justify="space-between"
-                  align="center"
-                  margin="10px 0"
-                >
-                  <Wrapper display="flex" align="center">
-                    <BiCameraMovie color="green" />
-                    <Text marginLeft="5px" color="rgb(229, 229, 229)">
-                      {totalTime(
-                        data.runtime || data.last_episode_to_air.runtime
+                    <Wrapper display="flex" align="center">
+                      <Text color="#ffffff" marginRight="5px">
+                        별점:
+                      </Text>
+
+                      {data.vote_average > 0 ? (
+                        <Text weight="bold" color="#ffffff" marginRight="10px">
+                          {(data.vote_average / 2).toFixed(1)}
+                        </Text>
+                      ) : (
+                        <Text color="#ffffff" marginRight="10px">
+                          정보 없음
+                        </Text>
                       )}
-                    </Text>
+
+                      <AverageBox>
+                        <AverageStar
+                          style={{ width: data.vote_average * 10 + "%" }}
+                        />
+                      </AverageBox>
+                    </Wrapper>
                   </Wrapper>
 
-                  <Wrapper display="flex" align="center">
-                    <Text color="#ffffff" marginRight="5px">
-                      별점:
-                    </Text>
+                  <Wrapper display="flex" padding="0px 20px 0px 20px">
+                    {data.overview !== "" ? (
+                      <OverView color="#ffffff">{data.overview}</OverView>
+                    ) : (
+                      <Text color="#ffffff" size="13px">
+                        제작사에서 내용을 준비중입니다.
+                      </Text>
+                    )}
+                  </Wrapper>
 
-                        {data.vote_average > 0? <Text weight="bold" color="#ffffff" marginRight="10px">
-                      {(data.vote_average / 2).toFixed(1)}
-                    </Text>: <Text color="#ffffff" marginRight="10px">정보 없음</Text>}
-                    
-
-                    
-                    <AverageBox>
-                      <AverageStar
-                        style={{ width: data.vote_average * 10 + "%" }}
-                      />
-                    </AverageBox>
+                  <Wrapper
+                    background="black"
+                    position="relative"
+                    left="0px"
+                    bottom="0px"
+                    width="100%"
+                    padding="10px 20px"
+                    height="44px"
+                    display="flex"
+                    align="center"
+                    justify="flex-end"
+                  >
+                    {data.production_companies != "" ? (
+                      <OverView>
+                        <span style={{ color: "#b2bec3" }}>
+                          {`제작사: ${data.production_companies[0].name}(${data.production_companies[0].origin_country})`}
+                        </span>
+                      </OverView>
+                    ) : (
+                      <Text textAlign="end" color="#b2bec3" size="13px">
+                        제작사 - InComing...
+                      </Text>
+                    )}
                   </Wrapper>
                 </Wrapper>
-
-                {data.overview != "" ? (
-                  <Wrapper margin="20px 0">
-                    <OverView color="#ffffff">{data.overview}</OverView>
-                  </Wrapper>
-                ) : (
-                  <Text margin="20px 0" textAlign="center" color="#ffffff">소개정보 없음</Text>
-                )}
-
-                {data.production_companies != "" ? (
-                  <Wrapper display="flex" justify="center">
-                    <OverView color="#ffffff">{`제작사: ${data.production_companies[0].name}(${data.production_companies[0].origin_country})`}</OverView>
-                  </Wrapper>
-                ) : (
-                  <Text color="#ffffff" textAlign="center">제작사: 정보 없음</Text>
-                )}
-              </Wrapper>
-            </ModalWrap>
-          </ModalContainer>
+              </ModalWrap>
+            </ModalContainer>
+          </Wrapper>
         </>
       )}
     </>

@@ -24,6 +24,11 @@ const SwiperSlideBox = styled(SwiperSlide)`
   object-position: 50% 50%;
   position: relative;
   overflow: visible;
+
+
+  @media (max-width:1200px) {
+    overflow: initial;
+  }
 `;
 
 const SlideBox = styled.div`
@@ -59,25 +64,6 @@ const SlideDesc = styled(motion.div)`
   transition-duration: 0.5s;
 `;
 
-const imgVariants = {
-  normal: {
-    scale: 1,
-  },
-
-  hover: {
-    scale: 1.05,
-  },
-};
-
-const descVariants = {
-  normal: {
-    opacity: 0,
-  },
-
-  hover: {
-    opacity: 1,
-  },
-};
 
 function Slider(props) {
   return (
@@ -95,7 +81,28 @@ function Slider(props) {
         modules={[FreeMode, Pagination, Navigation]}
         navigation={true}
         className="mySwiper"
-        style={{ overflow: "visible" }}
+
+        breakpoints= {{
+          // when window width is >= 320px
+          1200:{
+            slidesPerView: 5,
+            spaceBetween: 15
+          },
+
+          700:{
+            slidesPerView: 3,
+            spaceBetween: 15
+          },
+
+          500:{
+            slidesPerView: 2,
+            spaceBetween: 15
+          },
+          300:{
+            slidesPerView: 1,
+            spaceBetween: 15
+          },
+        }}
       >
         {props.movieData?.map((v) => {
           const motionId = createMovieMotionId(v.id);

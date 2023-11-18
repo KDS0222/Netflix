@@ -20,7 +20,7 @@ const BannerWrap = styled.div`
 const InfoDescBox = styled.div``;
 
 const MovieDesc = styled.div`
-  width: 40%;
+  width: 60%;
   height: 100px;
   margin: 15px 0;
 `;
