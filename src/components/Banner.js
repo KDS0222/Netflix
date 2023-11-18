@@ -53,6 +53,9 @@ const TitleText = styled(Text)`
 `;
 
 const SubText = styled(Text)`
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 26px;
   @media (max-width: 768px) {
     font-size: 14px;
     line-height: 22px;
@@ -84,7 +87,7 @@ function Banner(props) {
             <TitleText>{props.movieData[0].title}</TitleText>
 
             <MovieDesc>
-              <SubText size="18px" weight="bold" line="26px">
+              <SubText>
                 {props.movieData[0].overview}
               </SubText>
             </MovieDesc>

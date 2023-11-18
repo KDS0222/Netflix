@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Logo from "./Logo";
 import Wrapper from "./Wrapper";
 import { BiSearch } from "@react-icons/all-files/bi/BiSearch";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 const NavBox = styled(motion.div)`
@@ -66,7 +66,7 @@ const SearchWrap = styled(motion.div)`
   padding: 5px 10px;
 
   @media (max-width: 425px) {
-    display: none;
+    width: 180px;
   }
 `;
 
@@ -83,9 +83,15 @@ const SearchBox = styled(motion.input)`
     color: #e5e5e5;
     font-size: 14px;
   }
+
+  @media (max-width: 425px) {
+    width: 100%;
+  }
 `;
 
 function Nav(props) {
+  const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+  const [searchBarSize, setSearchBarSize] = useState(200);
   const [searchOpen, setSearchOpen] = useState(false);
   const inputRef = useRef(null);
   const navigation = useNavigate();
@@ -122,7 +128,14 @@ function Nav(props) {
     }
   };
   
-  
+  useEffect(() => {
+    if(innerWidth > 767){
+      setSearchBarSize(200);
+    }else{
+      setSearchBarSize(150);
+    }
+
+  }, [innerWidth])
   
   
 
@@ -157,9 +170,9 @@ function Nav(props) {
           </NavMenuBox>
 
           <SearchWrap
-            initial={{ x: 200 }}
+            initial={{ x: searchBarSize }}
             animate={{
-              x: searchOpen ? 0 : 200,
+              x: searchOpen ? 0 : searchBarSize,
               transition: "duration: 0.5",
               borderColor: `rgba(255,255,255, ${searchOpen ? "0.5" : "0"})`,
               backgroundColor: `rgba(0,0,0,${searchOpen ? "0.5" : "0"})`,
@@ -179,6 +192,7 @@ function Nav(props) {
               placeholder="Search for..."
             />
           </SearchWrap>
+
         </Wrapper>
       </Wrapper>
     </NavBox>
