@@ -69,8 +69,8 @@ const ModalWrap = styled(motion.div)`
 `;
 
 const Adult = styled.img`
-  width: 24px;
-  height: 24px;
+  width: 50px;
+  height: 50px;
   position: absolute;
   top: 20px;
   left: 20px;
@@ -137,26 +137,26 @@ function Overlay({ id }) {
       {cardData && (
         <>
           <Backdrop />
-          <Wrapper weight="100%" height="100%">
-            <ModalContainer
-              layoutId={motionId}
-              key="modal"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0, transition: { duration: 0.3 } }}
-            >
-              <ModalWrap>
-                {data.adult && <Adult src={adult} />}
-                <ModalBg backgroundImg={imgLink + cardData?.backdrop_path}>
-                  <Text color="rgb(229, 229, 229)" size="20px" weight="500">
-                    {cardData?.original_name || cardData.original_title}
-                  </Text>
-                  <Text color="rgb(229, 229, 229)" size="40px" weight="bold">
-                    {cardData?.name || cardData.title}
-                  </Text>
-                </ModalBg>
+          <ModalContainer
+            layoutId={motionId}
+            key="modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.3 } }}
+          >
+            <ModalWrap>
+              {data.adult && <Adult src={adult} />}
+              <ModalBg backgroundImg={imgLink + cardData?.backdrop_path}>
+                <Text color="rgb(229, 229, 229)" size="20px" weight="500">
+                  {cardData?.original_name || cardData.original_title}
+                </Text>
+                <Text color="rgb(229, 229, 229)" size="40px" weight="bold">
+                  {cardData?.name || cardData.title}
+                </Text>
+              </ModalBg>
 
-                <Wrapper>
+              <Wrapper height="calc(100% - 400px)" display="flex" direction="column" justify="space-between">
+                <Wrapper min-height="100%">
                   <Wrapper
                     display="flex"
                     align="center"
@@ -234,7 +234,7 @@ function Overlay({ id }) {
                     </Wrapper>
                   </Wrapper>
 
-                  <Wrapper display="flex" padding="0px 20px 0px 20px">
+                  <Wrapper display="flex" padding="0px 20px 20px 20px">
                     {data.overview !== "" ? (
                       <OverView color="#ffffff">{data.overview}</OverView>
                     ) : (
@@ -243,35 +243,35 @@ function Overlay({ id }) {
                       </Text>
                     )}
                   </Wrapper>
-
-                  <Wrapper
-                    background="black"
-                    position="relative"
-                    left="0px"
-                    bottom="0px"
-                    width="100%"
-                    padding="10px 20px"
-                    height="44px"
-                    display="flex"
-                    align="center"
-                    justify="flex-end"
-                  >
-                    {data.production_companies != "" ? (
-                      <OverView>
-                        <span style={{ color: "#b2bec3" }}>
-                          {`제작사: ${data.production_companies[0].name}(${data.production_companies[0].origin_country})`}
-                        </span>
-                      </OverView>
-                    ) : (
-                      <Text textAlign="end" color="#b2bec3" size="13px">
-                        제작사 - InComing...
-                      </Text>
-                    )}
-                  </Wrapper>
                 </Wrapper>
-              </ModalWrap>
-            </ModalContainer>
-          </Wrapper>
+
+                <Wrapper
+                  background="black"
+                  position="relative"
+                  left="0px"
+                  bottom="0px"
+                  width="100%"
+                  padding="10px 20px"
+                  height="44px"
+                  display="flex"
+                  align="center"
+                  justify="flex-end"
+                >
+                  {data.production_companies != "" ? (
+                    <OverView>
+                      <span style={{ color: "#b2bec3" }}>
+                        {`제작사: ${data.production_companies[0].name}(${data.production_companies[0].origin_country})`}
+                      </span>
+                    </OverView>
+                  ) : (
+                    <Text textAlign="end" color="#b2bec3" size="13px">
+                      제작사 - InComing...
+                    </Text>
+                  )}
+                </Wrapper>
+              </Wrapper>
+            </ModalWrap>
+          </ModalContainer>
         </>
       )}
     </>
