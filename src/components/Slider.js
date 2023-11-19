@@ -89,11 +89,11 @@ function Slider(props) {
           const motionId = createMovieMotionId(v.id);
 
           return (
-            <SwiperSlideBox key={uuidv4()}>
+            <Slide key={uuidv4()}>
               <motion.div layoutId={motionId}>
                 <SliderCard v={v} motionId={motionId} />
               </motion.div>
-            </SwiperSlideBox>
+            </Slide>
           );
         })}
 
@@ -101,11 +101,11 @@ function Slider(props) {
           const motionTvId = createTvMotionId(v.id);
 
           return (
-            <SwiperSlideBox key={uuidv4()}>
+            <Slide key={uuidv4()}>
               <motion.div layoutId={motionTvId}>
                 <SliderCard v={v} motionId={motionTvId} />
               </motion.div>
-            </SwiperSlideBox>
+            </Slide>
           );
         })}
       </SwiperComponent>
