@@ -23,7 +23,26 @@ const CardBox = styled.div`
 
   @media (max-width:1200px) {
     overflow: initial;
-    
+  }
+
+  @media (max-width:768px) {
+    width: 33.3%;
+
+    &:nth-child(1n){
+      padding-left: 0;
+    }
+
+    &:nth-child(3n){
+      padding-right: 0;
+    }
+  }
+
+  @media (max-width:425px) {
+    width: 49%;
+
+    &:nth-child(2n){
+      padding-right: 0;
+    }
   }
 `;
 
