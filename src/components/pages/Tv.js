@@ -6,7 +6,6 @@ import Overlay from "../Modal/Overlay";
 import { useParams } from "react-router-dom";
 
 export function Tv(props) {
-  console.log(props.tvData);
 
   const { id } = useParams();
   return (

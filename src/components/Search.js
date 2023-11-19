@@ -72,13 +72,8 @@ export function Search() {
     tvTemp = tvArray;
   }
 
-  console.log(movieTemp);
-  console.log(tvTemp);
 
   total();
-
-  // console.log(movieFilterData);
-  // console.log(tvFilterData);
 
   // ! filterKey에서 topRated, upcoming 둘다 나와야하는데 topRated만 나오니까 이 부분 수정하면 검색부분은 끝난다.
   // ! tv쪽은 title이 아닌 name으로 변경한다.

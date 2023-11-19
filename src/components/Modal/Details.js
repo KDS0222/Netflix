@@ -1,17 +1,11 @@
 import Backdrop from "./Backdrop";
 import ReactDOM from "react-dom";
 import Overlay from "./Overlay";
-import { Navigate, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
-import Main from "../Main";
-import { useQuery } from "react-query";
+import { useLocation } from "react-router-dom";
 
 function Details(props) {
   const location = useLocation();
   const stateData = location.state;
-
-
-
-  
   
   return (
     <>

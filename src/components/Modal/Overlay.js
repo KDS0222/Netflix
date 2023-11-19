@@ -130,8 +130,6 @@ function Overlay({ id }) {
   const location = useLocation();
   const cardData = location.state;
 
-  console.log(location);
-
   const { isLoading, error, data } = useQuery("movieData", () =>
     fetch(
       location.pathname.includes("/tv")
@@ -139,8 +137,6 @@ function Overlay({ id }) {
         : `https://api.themoviedb.org/3/movie/${id}?api_key=1efe7e9dcfe999d6d25a99f91164d434&language=ko-kr`
     ).then((res) => res.json())
   );
-
-  console.log(data);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -150,8 +146,6 @@ function Overlay({ id }) {
   if (isLoading) return <Loading />;
   if (error) return "An error ";
 
-  console.log("Overlay console: " + id);
-  console.log("Detail Data");
 
   function totalTime(value) {
     let totalTime = value;
