@@ -146,7 +146,6 @@ function Overlay({ id }) {
   if (isLoading) return <Loading />;
   if (error) return "An error ";
 
-
   function totalTime(value) {
     let totalTime = value;
     let hour = parseInt(totalTime / 60);
@@ -214,24 +213,26 @@ function Overlay({ id }) {
                         cardData.first_air_date?.slice(0, 4)}
                     </Text>
 
-                    {data.genres.map((v) => (
-                      <div
-                        style={{
-                          backgroundColor: "black",
-                          padding: "3px 5px",
-                          marginRight: "5px",
-                          borderRadius: "10px",
-                        }}
-                      >
-                        <GenresTitle
-                          color="rgb(229, 229, 229)"
-                          margin="0 3px"
-                          size="14px"
+                    <Wrapper display="flex">
+                      {data.genres.map((v) => (
+                        <div
+                          style={{
+                            backgroundColor: "black",
+                            padding: "3px 5px",
+                            marginRight: "5px",
+                            borderRadius: "10px",
+                          }}
                         >
-                          {`#${v?.name}`}
-                        </GenresTitle>
-                      </div>
-                    ))}
+                          <GenresTitle
+                            color="rgb(229, 229, 229)"
+                            margin="0 3px"
+                            size="14px"
+                          >
+                            {`#${v?.name}`}
+                          </GenresTitle>
+                        </div>
+                      ))}
+                    </Wrapper>
                   </Wrapper>
 
                   <VideoInfoBox

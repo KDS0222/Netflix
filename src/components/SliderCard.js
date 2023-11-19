@@ -1,13 +1,6 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { SwiperSlide } from "swiper/react";
-import { v4 as uuidv4 } from "uuid";
-import Backdrop from "./Modal/Backdrop";
-import Overlay from "./Modal/Overlay";
-import ReactDOM from "react-dom";
-import { useQuery } from "react-query";
 
 const SlideCard = styled(motion.div)`
   width: 100%;

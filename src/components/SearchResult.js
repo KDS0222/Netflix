@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Text from "./Text";
 import SliderCard from "./SliderCard";
-import { Link } from "react-router-dom";
 import Wrapper from "./Wrapper";
 import { motion } from "framer-motion";
 

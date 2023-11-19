@@ -1,7 +1,5 @@
-import styled from "styled-components";
 import { useLocation } from "react-router";
 import Wrapper from "./Wrapper";
-import Slider from "./Slider";
 import { useSearchParams } from "react-router-dom";
 import { SearchResult } from "./SearchResult";
 import Text from "./Text";

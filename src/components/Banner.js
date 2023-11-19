@@ -118,14 +118,14 @@ function Banner(props) {
       {props.tvData && (
         <BannerWrap img={imgLink + props.tvData[0].backdrop_path}>
           <InfoDescBox>
-            <Text size="60px" weight="bold">
+            <TitleText size="60px" weight="bold">
               {props.tvData[0].name}
-            </Text>
+            </TitleText>
 
             <MovieDesc>
-              <Text size="18px" weight="bold" line="26px">
+              <SubText size="18px" weight="bold" line="26px">
                 {props.tvData[0].overview}
-              </Text>
+              </SubText>
             </MovieDesc>
 
             <DetailBtn onClick={() => navigation(
@@ -134,8 +134,8 @@ function Banner(props) {
                   state: props.tvData[0],
                 }
               )}>
-              <FaInfoCircle size="24px" fill="#ffffff" />
-              <Text
+              <FaInfoCircleIcon size="24px" fill="#ffffff" />
+              <DetailInfoText
                 shadow="none"
                 size="20px"
                 weight="bold"
@@ -143,7 +143,7 @@ function Banner(props) {
                 margin="0 0 0 10px"
               >
                 상세 정보
-              </Text>
+              </DetailInfoText>
             </DetailBtn>
           </InfoDescBox>
         </BannerWrap>

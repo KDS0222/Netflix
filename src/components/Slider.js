@@ -65,7 +65,6 @@ function Slider(props) {
         navigation={true}
         className="mySwiper"
         breakpoints={{
-          // when window width is >= 320px
           1200: {
             slidesPerView: 5,
             spaceBetween: 15,
