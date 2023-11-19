@@ -2,8 +2,8 @@ import styled from "styled-components";
 import Text from "./Text";
 
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
+import { SwiperSlide } from "swiper/react";
+import { Swiper as SwiperComponent } from 'swiper/react';
 
 // Import Swiper styles
 import "swiper/css";
@@ -54,7 +54,7 @@ function Slider(props) {
       <VideoTitle margin="0 0 20px 20px" size="32px" weight="bold">
         {props.children}
       </VideoTitle>
-      <Swiper
+      <SwiperComponent
         slidesPerView={5}
         spaceBetween={15}
         freeMode={true}
@@ -108,7 +108,7 @@ function Slider(props) {
             </SwiperSlideBox>
           );
         })}
-      </Swiper>
+      </SwiperComponent>
     </SlideBox>
   );
 }
