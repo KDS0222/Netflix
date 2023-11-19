@@ -63,7 +63,7 @@ function Slider(props) {
         }}
         modules={[FreeMode, Pagination, Navigation]}
         navigation={true}
-        className="mySwiper"
+        className="mySwiper1"
         breakpoints={{
           1200: {
             slidesPerView: 5,
