@@ -1,3 +1,4 @@
+"use strict";
 import "./App.css";
 import Nav from "./components/Nav";
 import Main from "./components/Main";
@@ -8,7 +9,6 @@ import { Loading } from "./components/Loading";
 import { Tv } from "./components/pages/Tv";
 import { Footer } from "./components/Footer";
 import { Search } from "./components/Search";
-import Details from "./components/Modal/Details";
 
 function App() {
   // FIXME: 이거는 리팩토링 해야할 코드입니다.

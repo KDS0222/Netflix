@@ -115,7 +115,14 @@ const NormalTitle = styled(Text)`
 
 const GenresTitle = styled(Text)`
   @media (max-width: 768px) {
-    font-size: 28px;
+    font-size: 12px;
+  }
+`;
+
+const VideoInfoBox = styled(Wrapper)`
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
   }
 `;
 
@@ -173,12 +180,20 @@ function Overlay({ id }) {
             <ModalWrap>
               {data.adult && <Adult src={adult} />}
               <ModalBg backgroundImg={imgLink + cardData?.backdrop_path}>
-                <Text color="rgb(229, 229, 229)" size="20px" weight="500">
+                <OriginalTitle
+                  color="rgb(229, 229, 229)"
+                  size="20px"
+                  weight="500"
+                >
                   {cardData?.original_name || cardData.original_title}
-                </Text>
-                <Text color="rgb(229, 229, 229)" size="40px" weight="bold">
+                </OriginalTitle>
+                <NormalTitle
+                  color="rgb(229, 229, 229)"
+                  size="40px"
+                  weight="bold"
+                >
                   {cardData?.name || cardData.title}
-                </Text>
+                </NormalTitle>
               </ModalBg>
 
               <Wrapper
@@ -214,18 +229,18 @@ function Overlay({ id }) {
                           borderRadius: "10px",
                         }}
                       >
-                        <Text
+                        <GenresTitle
                           color="rgb(229, 229, 229)"
                           margin="0 3px"
                           size="14px"
                         >
                           {`#${v?.name}`}
-                        </Text>
+                        </GenresTitle>
                       </div>
                     ))}
                   </Wrapper>
 
-                  <Wrapper
+                  <VideoInfoBox
                     display="flex"
                     justify="space-between"
                     align="center"
@@ -233,7 +248,7 @@ function Overlay({ id }) {
                     marginBottom="25px"
                     padding="6px 20px 0px 20px"
                   >
-                    <Wrapper display="flex" align="center">
+                    <Wrapper display="flex" align="center" marginBottom="8px">
                       <BiCameraMovie color="green" />
                       <Text marginLeft="5px" color="rgb(229, 229, 229)">
                         {totalTime(
@@ -263,7 +278,7 @@ function Overlay({ id }) {
                         />
                       </AverageBox>
                     </Wrapper>
-                  </Wrapper>
+                  </VideoInfoBox>
 
                   <Wrapper display="flex" padding="0px 20px 20px 20px">
                     {data.overview !== "" ? (
