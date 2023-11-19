@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Text from "./Text";
 
 // Import Swiper React components
-import { SwiperSlide } from "swiper/react";
+import { SwiperSlide as Slide } from "swiper/react";
 import { Swiper as SwiperComponent } from 'swiper/react';
 
 // Import Swiper styles
@@ -17,7 +17,7 @@ import { v4 as uuidv4 } from "uuid";
 import SliderCard from "./SliderCard";
 import { createMovieMotionId, createTvMotionId } from "../utils/helper";
 
-const SwiperSlideBox = styled(SwiperSlide)`
+const SwiperSlideBox = styled(Slide)`
   width: auto;
   height: 250px;
   object-fit: cover;
