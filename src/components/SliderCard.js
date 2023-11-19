@@ -62,8 +62,6 @@ export default function SliderCard(props) {
 
   const location = useLocation();
 
-  console.log(location);
-
   function navi() {
     location.pathname == "/tv"
       ? navigation(`/tv/${props.v.id}?motionId=${props.motionId}`, {

@@ -4,6 +4,7 @@ import Text from "./Text";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -13,7 +14,6 @@ import { Navigation, FreeMode, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
 
 import { v4 as uuidv4 } from "uuid";
-import { Link, useParams } from "react-router-dom";
 import SliderCard from "./SliderCard";
 import { createMovieMotionId, createTvMotionId } from "../utils/helper";
 

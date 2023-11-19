@@ -40,6 +40,11 @@ const ModalContainer = styled(motion.div)`
   align-items: center;
   border-radius: 6px;
   z-index: 100;
+
+  @media (max-width: 768px) {
+    width: 80%;
+    height: 700px;
+  }
 `;
 
 const ModalBg = styled.div`
@@ -57,7 +62,7 @@ const ModalBg = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   padding: 20px;
-  flex:1;
+  flex: 1;
 `;
 
 const ModalWrap = styled(motion.div)`
@@ -94,6 +99,24 @@ const AverageStar = styled.div`
   position: absolute;
   left: 0;
   top: 0;
+`;
+
+const OriginalTitle = styled(Text)`
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+`;
+
+const NormalTitle = styled(Text)`
+  @media (max-width: 768px) {
+    font-size: 28px;
+  }
+`;
+
+const GenresTitle = styled(Text)`
+  @media (max-width: 768px) {
+    font-size: 28px;
+  }
 `;
 
 function Overlay({ id }) {
@@ -158,7 +181,12 @@ function Overlay({ id }) {
                 </Text>
               </ModalBg>
 
-              <Wrapper height="calc(100% - 400px)" display="flex" direction="column" justify="space-between">
+              <Wrapper
+                height="calc(100% - 400px)"
+                display="flex"
+                direction="column"
+                justify="space-between"
+              >
                 <Wrapper min-height="100%">
                   <Wrapper
                     display="flex"
